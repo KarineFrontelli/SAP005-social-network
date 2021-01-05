@@ -55,107 +55,67 @@ export const Home = () => {
       });
       renderPage();
     }
-    
   }
 
 
   function renderizarPosts() {
     firebase.firestore().collection('posts').orderBy('date', 'desc').get().then((snapshot) => {
       const cardsOk = adicionaPostATela(snapshot.docs);
-
       feedArea.innerHTML = cardsOk;
-
-      // ------ ADICIONAR UM EVENTO À feedArea para gerar o if de autenticação -----------------------------
-
-      // const closestUid = feedArea.querySelector(".uid-escondido").innerText;
-      // if(closestUid === firebase.auth().currentUser.uid) {
-      //   console.log(closestUid)
-      //   feedArea.querySelectorAll(".btn-editar").style.display = "block"
-      // }
-      const closestUid = feedArea.querySelector(".uid-escondido");
-      // const cadaUid = closestUid.innerText
-      // cadaUid.forEach(function(cardsOk) {
-        console.log(closestUid.innerHTML)
-      // })
-
-      console.log(firebase.auth().currentUser.uid)
-
-      if(closestUid.innerText === firebase.auth().currentUser.uid){
-        console.log("It's me, Maaario")
-        const btnbtn = feedArea.querySelector(".btn-editar");
-        // btnbtn.classList.remove("btn-editar");
-        // btnbtn.classList.add("btn-block");
-        console.log(btnbtn)
-      }
-
-      if(closestUid.innerText != firebase.auth().currentUser.uid){
-        console.log("Not today, Satan!")
-      }
       
-      // for(let uids in cardsOk) {
-      //   uids = closestUid.innerText;
-      //   console.log(uids)
-      // }
-      const btnLike = ".btnLike"
-
       const btnEditar = ".btn-editar";
       const btnExcluir = ".btn-excluir";
+      const btnLike = ".btnLike";
 
       feedArea.addEventListener("click", function (event) {
         let closestEditar = event.target.closest(btnEditar);
         if (closestEditar && feedArea.contains(closestEditar)) {
-          console.log("botão editar ok")
 
           const closestTextarea = closestEditar.parentNode.querySelector(".editar-post");
           closestTextarea.style.display = "block"
-          console.log(closestTextarea)
           const closestBtnSalvarEdicao = closestEditar.parentNode.querySelector(".btn-salvar-editado");
           closestBtnSalvarEdicao.style.display = "block"
 
           closestBtnSalvarEdicao.addEventListener("click", function (event) {
-            console.log("botão salvar ok")
+
             closestTextarea.style.display = "none"
             closestBtnSalvarEdicao.style.display = "none"
             const closestPost = closestEditar.parentNode.querySelector(".texto-post");
             const postFinal = closestTextarea.value;
             closestPost.innerHTML = postFinal;
             const closestId = closestEditar.parentNode.querySelector(".id-escondido").innerText;
-            console.log(closestId)
 
             firebase.firestore().collection('posts').doc(closestId).update({
               like: postFinal
             }).then(() => {
               closestPost.innerHTML = postFinal;
-              console.log("Document successfully updated!");
             });
 
           })
 
         }
 
-        let closestLike = event.target.closest(btnLike);
-        if (closestLike && feedArea.contains(closestLike)){
-          console.log("Curtiu tá Top")
-          const closestIdLike = closestLike.parentNode.querySelector(".id-escondido").innerText;
-            console.log(closestIdLike)
-            const likeBtn  = firebase.firestore().collection('posts').doc(closestIdLike);
-             likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
-            console.log(likeBtn)
-        }
+        let closestExcluir = event.target.closest(btnExcluir);
+        if (closestExcluir && feedArea.contains(closestExcluir)) {
 
-        let cosestExcluir = event.target.closest(btnExcluir);
-        if (cosestExcluir && feedArea.contains(cosestExcluir)) {
-          console.log("botão excluir ok")
-
-          const closestIdPost = cosestExcluir.parentNode.querySelector(".id-escondido").innerText;
-          console.log(closestIdPost)
+          const closestIdPost = closestExcluir.parentNode.querySelector(".id-escondido").innerText;
 
           if (confirm("Tem certeza que deseja excluir esse post?")) {
             firebase.firestore().collection('posts').doc(closestIdPost).delete().then(() => {
-              console.log("Document successfully deleted!");
             });
             renderPage();
           }
+        }
+
+        let closestLike = event.target.closest(btnLike);
+        if (closestLike && feedArea.contains(closestLike)) {
+
+          const closestIdLike = closestLike.parentNode.querySelector(".id-escondido").innerText;
+
+          const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
+          likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
+
+          renderPage();
         }
       })
 
@@ -168,11 +128,9 @@ export const Home = () => {
           feedArea.innerHTML = cardsOk;
         }
         if (change.type === "modified") {
-          console.log("post: ", change.doc.data());
           renderizarPosts(change.doc.data())
         }
         if (change.type === "removed") {
-          console.log("Removed post: ", change.doc.data());
           renderizarPosts(change.doc.data())
         }
       });
@@ -215,28 +173,10 @@ export const Home = () => {
       `
       }
 
-      
-
       cards += cardPost;
     });
 
     return cards;
-
-    // const likeBtn = document.querySelector("#btnLike");
-    //   likeBtn.addEventListener("click", (event) => {
-    //     event.preventDefault();
-    //     console.log("eai")
-    //     likePost();
-    //   })
-
-    // function likePost(uid) {
-    //   const like = firebase.firestore().collection('posts').doc(uid);
-    //   like.update({ likes: firebase.firestore.FieldValue.increment(1) });
-    //   console.log(uid);
-
-    //   console.log('oi');
-
-    // }
 
   }
 
@@ -249,16 +189,12 @@ export const Home = () => {
   // });
 
   const btnLogout = rootElement.querySelector('#btnLogout');
-
+  btnLogout.addEventListener('click', logout);
   function logout() {
-    // console.log("sextou bb")
     firebase.auth().signOut().then(() => {
-      // console.log("Sessão Encerrada!!")
       window.location = '/';
     });
   }
-
-  btnLogout.addEventListener('click', logout);
 
   return rootElement;
 };
