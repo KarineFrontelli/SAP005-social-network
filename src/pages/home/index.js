@@ -39,7 +39,6 @@ export const Home = () => {
   btnPost.addEventListener('click', criarPost);
 
   function criarPost() {
-    // const uid = firebase.auth().currentUser.uid;
     const userName = firebase.auth().currentUser.displayName;
     if (textoPost.value === '') {
       console.log('Digite alguma coisa!');
@@ -53,9 +52,6 @@ export const Home = () => {
       };
 
       firebase.firestore().collection('posts').add(feed).then(() => {
-
-        // pegar o id do post
-        // console.log(idDoPost);
       });
       renderPage();
     }
@@ -68,9 +64,6 @@ export const Home = () => {
       const cardsOk = adicionaPostATela(snapshot.docs);
 
       feedArea.innerHTML = cardsOk;
-
-      const btnEditar = ".btn-editar";
-
 
       // ------ ADICIONAR UM EVENTO À feedArea para gerar o if de autenticação -----------------------------
 
@@ -90,7 +83,7 @@ export const Home = () => {
       if(closestUid.innerText === firebase.auth().currentUser.uid){
         console.log("It's me, Maaario")
         const btnbtn = feedArea.querySelector(".btn-editar");
-        btnbtn.classList.remove("btn-editar");
+        // btnbtn.classList.remove("btn-editar");
         // btnbtn.classList.add("btn-block");
         console.log(btnbtn)
       }
@@ -104,19 +97,19 @@ export const Home = () => {
       //   console.log(uids)
       // }
 
+      const btnEditar = ".btn-editar";
+      const btnExcluir = ".btn-excluir";
+
       feedArea.addEventListener("click", function (event) {
         let closestEditar = event.target.closest(btnEditar);
         if (closestEditar && feedArea.contains(closestEditar)) {
           console.log("botão editar ok")
-
 
           const closestTextarea = closestEditar.parentNode.querySelector(".editar-post");
           closestTextarea.style.display = "block"
           console.log(closestTextarea)
           const closestBtnSalvarEdicao = closestEditar.parentNode.querySelector(".btn-salvar-editado");
           closestBtnSalvarEdicao.style.display = "block"
-
-
 
           closestBtnSalvarEdicao.addEventListener("click", function (event) {
             console.log("botão salvar ok")
@@ -129,13 +122,28 @@ export const Home = () => {
             console.log(closestId)
 
             firebase.firestore().collection('posts').doc(closestId).update({
-              post: postFinal
+              like: postFinal
             }).then(() => {
               closestPost.innerHTML = postFinal;
               console.log("Document successfully updated!");
             });
 
           })
+        }
+
+        let cosestExcluir = event.target.closest(btnExcluir);
+        if (cosestExcluir && feedArea.contains(cosestExcluir)) {
+          console.log("botão excluir ok")
+
+          const closestIdPost = cosestExcluir.parentNode.querySelector(".id-escondido").innerText;
+          console.log(closestIdPost)
+
+          if (confirm("Tem certeza que deseja excluir esse post?")) {
+            firebase.firestore().collection('posts').doc(closestIdPost).delete().then(() => {
+              console.log("Document successfully deleted!");
+            });
+            renderPage();
+          }
         }
       })
 
@@ -153,6 +161,7 @@ export const Home = () => {
         }
         if (change.type === "removed") {
           console.log("Removed post: ", change.doc.data());
+          renderizarPosts(change.doc.data())
         }
       });
     });
@@ -165,39 +174,41 @@ export const Home = () => {
     data.forEach(doc => {
       const informacao = doc.data();
       const idPost = doc.id;
-      const cardPost = `
+      let cardPost = "";
+      if (informacao.uid === firebase.auth().currentUser.uid) {
+        cardPost = `
       <div class="card-post">
-        <button  class="btn-excluir" id="btnExcluirPost">excluir post</button>
         <h2 class="nome-usuario">${informacao.name}</h2>
         <button class="btn-editar" id="btnEditar">editar post</button>
+        <button  class="btn-excluir" id="btnExcluirPost">excluir post</button>
         <p class="texto-post" id="post">${informacao.post}</p>
         <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
         <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
         <p class="id-escondido">${idPost}</p>
         <p class="uid-escondido">${informacao.uid}</p>
+
+      </div>
+      `
+      } else {
+        cardPost = `
+      <div class="card-post">
+        <h2 class="nome-usuario">${informacao.name}</h2>
+        <p class="texto-post" id="post">${informacao.post}</p>
+        <p class="id-escondido">${idPost}</p>
+        <p class="uid-escondido">${informacao.uid}</p>
         <div>
-          <button class="btnLike" id="btnLike" data-id =${informacao.id}>curtir</button>
+          <button class="btnLike" id="btnLike" data-id =${informacao.uid}>curtir</button>
         </div>
       </div>
-      `;
+      `
+      }
+
+      
 
       cards += cardPost;
     });
 
     return cards;
-
-    // for (let btnExcluirPost of areaPosts) {
-    //   btnExcluirPost = document.querySelectorAll("#btnExcluirPost");
-    //   btnExcluirPost.forEach((btnExluir) => {
-    //     btnExluir.addEventListener('click', (event) => {
-    //       event.preventDefault();
-    //       console.log("botão excluir ok");
-    //       if (confirm("Tem certeza que deseja excluir esse post?")) {
-    //         document.querySelector(".card-post").style.display = "none";
-    //       }
-    //     });
-    //   });
-    // };
 
     // const likeBtn = document.querySelector("#btnLike");
     //   likeBtn.addEventListener("click", (event) => {
