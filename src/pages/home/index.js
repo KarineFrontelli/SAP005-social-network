@@ -148,7 +148,6 @@ export const Home = () => {
             const likeBtn  = firebase.firestore().collection('posts').doc(closestIdLike);
              likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
             console.log(likeBtn)
-
         }
       
 
