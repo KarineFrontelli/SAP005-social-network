@@ -96,20 +96,22 @@ export const Home = () => {
         }
 
         let closestLike = event.target.closest(btnLike);
-        if (closestLike && feedArea.contains(closestLike)) {
+        if (closestLike && feedArea.contains(closestLike)){
+          console.log("Curtiu tá Top")
           const closestIdLike = closestLike.parentNode.querySelector(".id-escondido").innerText;
 
-          firebase.firestore().collection('posts').doc(closestIdLike).get().then(function (doc) {
-            if (doc.data().likes == 0) {
-              likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
-            } else {
-              alert("Não pode curtir mais de uma vez!");
-            }
-          }).catch(function (error) {
-            console.log("Error getting document:", error);
+          const likeBtn  = firebase.firestore().collection('posts').doc(closestIdLike);
+            likeBtn.get().then(function(doc) {
+              if (doc.data().likes==0) {
+                likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
+              } else {
+                  alert("Não pode curtir mais de uma vez!");
+              }
+          }).catch(function(error) {
+              console.log("Error getting document:", error);
           });
           renderPage();
-
+             
         }
 
         let closestExcluir = event.target.closest(btnExcluir);
@@ -185,7 +187,7 @@ export const Home = () => {
         <div>
           <p class="id-escondido">${idPost}</p>
           <button class="btnLike" id="btnLike" data-id =${informacao.uid}>curtir</button>
-          <p class="mostra-likes">${informacao.likes}</p>
+          <p class="mostra-like">${informacao.likes}</p>
         </div>
       </div>
       `
