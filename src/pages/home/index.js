@@ -95,6 +95,24 @@ export const Home = () => {
 
         }
 
+        let closestLike = event.target.closest(btnLike);
+        if (closestLike && feedArea.contains(closestLike)){
+          console.log("Curtiu tá Top")
+          const closestIdLike = closestLike.parentNode.querySelector(".id-escondido").innerText;
+            console.log(closestIdLike)
+            const likeBtn  = firebase.firestore().collection('posts').doc(closestIdLike);
+            likeBtn.get().then(function(doc) {
+              if (doc.data().likes==0) {
+                likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
+              } else {
+                  alert("Não pode curtir mais de uma vez!");
+              }
+          }).catch(function(error) {
+              console.log("Error getting document:", error);
+          });
+             
+        }
+
         let closestExcluir = event.target.closest(btnExcluir);
         if (closestExcluir && feedArea.contains(closestExcluir)) {
 
