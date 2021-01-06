@@ -24,7 +24,6 @@ export const Home = () => {
 
   const nomeUsuario = () => firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-
       document.querySelector('#userName').innerHTML = `Olá, ${user.displayName}`;
     } else {
       // No user is signed in.
@@ -57,108 +56,92 @@ export const Home = () => {
     }
   }
 
-
   function renderizarPosts() {
-    firebase.firestore().collection('posts').orderBy('date', 'desc').get().then((snapshot) => {
-      const cardsOk = adicionaPostATela(snapshot.docs);
-      feedArea.innerHTML = cardsOk;
-      
-      const btnEditar = ".btn-editar";
-      const btnExcluir = ".btn-excluir";
-      const btnLike = ".btnLike";
+    firebase.firestore().collection('posts').orderBy('date', 'desc').get()
+      .then((snapshot) => {
+        const cardsOk = adicionaPostATela(snapshot.docs);
+        feedArea.innerHTML = cardsOk;
 
-      feedArea.addEventListener("click", function (event) {
-        let closestEditar = event.target.closest(btnEditar);
-        if (closestEditar && feedArea.contains(closestEditar)) {
+        const btnEditar = '.btn-editar';
+        const btnExcluir = '.btn-excluir';
+        const btnLike = '.btnLike';
 
-          const closestTextarea = closestEditar.parentNode.querySelector(".editar-post");
-          closestTextarea.style.display = "block"
-          const closestBtnSalvarEdicao = closestEditar.parentNode.querySelector(".btn-salvar-editado");
-          closestBtnSalvarEdicao.style.display = "block"
+        feedArea.addEventListener('click', (event) => {
+          const closestEditar = event.target.closest(btnEditar);
+          if (closestEditar && feedArea.contains(closestEditar)) {
+            const closestTextarea = closestEditar.parentNode.querySelector('.editar-post');
+            closestTextarea.style.display = 'block';
+            const closestBtnSalvarEdicao = closestEditar.parentNode.querySelector('.btn-salvar-editado');
+            closestBtnSalvarEdicao.style.display = 'block';
 
-          closestBtnSalvarEdicao.addEventListener("click", function (event) {
-
-            closestTextarea.style.display = "none"
-            closestBtnSalvarEdicao.style.display = "none"
-            const closestPost = closestEditar.parentNode.querySelector(".texto-post");
-            const postFinal = closestTextarea.value;
-            closestPost.innerHTML = postFinal;
-            const closestId = closestEditar.parentNode.querySelector(".id-escondido").innerText;
-
-            firebase.firestore().collection('posts').doc(closestId).update({
-              like: postFinal
-            }).then(() => {
+            closestBtnSalvarEdicao.addEventListener('click', () => {
+              closestTextarea.style.display = 'none';
+              closestBtnSalvarEdicao.style.display = 'none';
+              const closestPost = closestEditar.parentNode.querySelector('.texto-post');
+              const postFinal = closestTextarea.value;
               closestPost.innerHTML = postFinal;
+              const closestId = closestEditar.parentNode.querySelector('.id-escondido').innerText;
+
+              firebase.firestore().collection('posts').doc(closestId).update({
+                post: postFinal,
+              })
+                .then(() => {
+                  closestPost.innerHTML = postFinal;
+                });
             });
+          }
 
-          })
+          const closestLike = event.target.closest(btnLike);
+          if (closestLike && feedArea.contains(closestLike)) {
+            // console.log('Curtiu tá Top');
+            const closestIdLike = closestLike.parentNode.querySelector('.id-escondido').innerText;
 
-        }
-        let closestLike = event.target.closest(btnLike);
-        if (closestLike && feedArea.contains(closestLike)){
-          console.log("Curtiu tá Top")
-          const closestIdLike = closestLike.parentNode.querySelector(".id-escondido").innerText;
-          
-            console.log(closestIdLike)
-            const likeBtn  = firebase.firestore().collection('posts').doc(closestIdLike);
+            // console.log(closestIdLike);
+            const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
 
             let postJafoiCurtidoAlgumaVez = false;
             const usuarioLogado = firebase.auth().currentUser.uid;
-            const usuarioLogadoJaCurtiuEssePost  = firebase.firestore().collection('posts')
-            .doc(closestIdLike).collection('TB_QUEM_CURTIU');
+            const usuarioLogadoJaCurtiuEssePost = firebase.firestore().collection('posts')
+              .doc(closestIdLike).collection('TB_QUEM_CURTIU');
             const usuarioQueCurtiu = {
               usuarioQueCurtiu: firebase.auth().currentUser.uid,
             };
 
-            usuarioLogadoJaCurtiuEssePost.get().then(function(querySnapshot) {
-              querySnapshot.forEach(function(doc) {
-                if (postJafoiCurtidoAlgumaVez == false) {
-                  if (doc.data().usuarioQueCurtiu==usuarioLogado) {
+            usuarioLogadoJaCurtiuEssePost.get().then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                if (postJafoiCurtidoAlgumaVez === false) {
+                  if (doc.data().usuarioQueCurtiu === usuarioLogado) {
                     postJafoiCurtidoAlgumaVez = true;
-                    alert("post já foi curtido por você!")
-                  } 
+                    alert('post já foi curtido por você!');
+                  }
                 }
               });
 
-              if (postJafoiCurtidoAlgumaVez == false) {
-                alert("like ");
+              if (postJafoiCurtidoAlgumaVez === false) {
+              // alert("like ");
                 likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
                 firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
-                .add(usuarioQueCurtiu).then(() => {});
+                  .add(usuarioQueCurtiu)
+                  .then(() => {});
               }
-              
-            });
 
-        
-           
+              renderPage();
+            });
           }
 
+          const closestExcluir = event.target.closest(btnExcluir);
+          if (closestExcluir && feedArea.contains(closestExcluir)) {
+            const closestIdPost = closestExcluir.parentNode.querySelector('.id-escondido').innerText;
 
-        let closestExcluir = event.target.closest(btnExcluir);
-        if (closestExcluir && feedArea.contains(closestExcluir)) {
-
-          const closestIdPost = closestExcluir.parentNode.querySelector(".id-escondido").innerText;
-
-          if (confirm("Tem certeza que deseja excluir esse post?")) {
-            firebase.firestore().collection('posts').doc(closestIdPost).delete().then(() => {
-            });
-            renderPage();
+            if (confirm('Tem certeza que deseja excluir esse post?')) {
+              firebase.firestore().collection('posts').doc(closestIdPost).delete()
+                .then(() => {
+                });
+              renderPage();
+            }
           }
-        }
-
-        // let closestLike = event.target.closest(btnLike);
-        // if (closestLike && feedArea.contains(closestLike)) {
-
-        //   const closestIdLike = closestLike.parentNode.querySelector(".id-escondido").innerText;
-
-        //   const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
-        //   likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
-
-        //   renderPage();
-        // }
-      })
-
-    })
+        });
+      });
 
     firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
@@ -166,24 +149,24 @@ export const Home = () => {
           const cardsOk = adicionaPostATela(snapshot.docs);
           feedArea.innerHTML = cardsOk;
         }
-        if (change.type === "modified") {
-          renderizarPosts(change.doc.data())
+        if (change.type === 'modified') {
+          renderizarPosts(change.doc.data());
         }
-        if (change.type === "removed") {
-          renderizarPosts(change.doc.data())
+        if (change.type === 'removed') {
+          renderizarPosts(change.doc.data());
         }
       });
     });
   }
-  renderizarPosts()
+  renderizarPosts();
 
   function adicionaPostATela(data) {
-    let cards = "";
+    let cards = '';
 
-    data.forEach(doc => {
+    data.forEach((doc) => {
       const informacao = doc.data();
       const idPost = doc.id;
-      let cardPost = "";
+      let cardPost = '';
       if (informacao.uid === firebase.auth().currentUser.uid) {
         cardPost = `
       <div class="card-post">
@@ -195,8 +178,9 @@ export const Home = () => {
         <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
         <p class="id-escondido">${idPost}</p>
         <p class="uid-escondido">${informacao.uid}</p>
+        <p class="mostra-like">${informacao.likes}</p>
       </div>
-      `
+      `;
       } else {
         cardPost = `
       <div class="card-post">
@@ -210,14 +194,13 @@ export const Home = () => {
           <p class="mostra-like">${informacao.likes}</p>
         </div>
       </div>
-      `
+      `;
       }
 
       cards += cardPost;
     });
 
     return cards;
-
   }
 
   // firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
