@@ -67,6 +67,8 @@ export const Home = () => {
         const btnLike = '.btnLike';
 
         feedArea.addEventListener('click', (event) => {
+
+          console.log("foi clicado")
           const closestEditar = event.target.closest(btnEditar);
           if (closestEditar && feedArea.contains(closestEditar)) {
             const closestTextarea = closestEditar.parentNode.querySelector('.editar-post');
@@ -125,7 +127,6 @@ export const Home = () => {
                   .then(() => {});
               }
 
-              renderPage();
             });
           }
 
@@ -140,7 +141,8 @@ export const Home = () => {
               renderPage();
             }
           }
-        });
+        }, false);
+
       });
 
     firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
@@ -151,6 +153,7 @@ export const Home = () => {
         }
         if (change.type === 'modified') {
           renderizarPosts(change.doc.data());
+          
         }
         if (change.type === 'removed') {
           renderizarPosts(change.doc.data());
