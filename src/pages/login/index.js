@@ -1,5 +1,5 @@
 // import { } from './data.js';
-import { Google, Facebook,Email} from '../../services/index.js';
+import { Google, Facebook, Email } from '../../services/index.js';
 // import { renderPage } from '../../router.js';
 
 import { renderPage } from '../../router.js';
@@ -65,15 +65,13 @@ export const Login = () => {
     });
   });
 
- 
-
   const loginEmail = rootElement.querySelector('#btnEmail');
 
   loginEmail.addEventListener('click', (event) => {
     event.preventDefault();
-    let email = document.getElementById('inputEmail').value;
-    let senha = document.getElementById('inputSenha').value;
-    Email(email,senha).then(() => {
+    const email = document.getElementById('inputEmail').value;
+    const senha = document.getElementById('inputSenha').value;
+    Email(email, senha).then(() => {
       // const token = result.credential.accessToken;
       // const user = result.user;
       window.history.pushState(null, null, '/home');
@@ -90,12 +88,10 @@ export const Login = () => {
 
   irParaPaginaCadastro.addEventListener('click', (event) => {
     event.preventDefault();
-    
+
     window.history.pushState(null, null, '/cadastro');
     renderPage();
-
   });
 
   return rootElement;
 };
-

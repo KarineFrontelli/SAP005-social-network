@@ -18,7 +18,7 @@ exports[`Render página de login carrega a página 1`] = `
       
     <form>
       
-      
+        
       <div>
         
           
@@ -28,10 +28,10 @@ exports[`Render página de login carrega a página 1`] = `
           type="email"
         />
         
-      
+        
       </div>
       
-      
+        
       <div>
         
           
@@ -41,22 +41,20 @@ exports[`Render página de login carrega a página 1`] = `
           type="password"
         />
         
-      
+        
       </div>
       
-      
+          
       <button
         id="btnEmail"
       >
-        Fazer login com Email
+        Entrar
       </button>
       
-      
-      <button
-        id="btnCriar"
-      >
-        Criar conta
-      </button>
+          
+      <p>
+         Ou entre com...
+      </p>
       
       
     </form>
@@ -65,17 +63,34 @@ exports[`Render página de login carrega a página 1`] = `
     <button
       id="btnGoogle"
     >
-      Fazer login com o Google
+      Google
     </button>
     
       
     <button
       id="btnFacebook"
     >
-      Fazer login com o Facebook
+      Facebook
     </button>
     
+      
+    <p>
+      Não tem uma conta?
+    </p>
+    <p>
+      
+      
+      <button
+        class="link"
+        id="criarCadastro"
+      >
+        Cadastre-se
+      </button>
+      
+
+      
     
+    </p>
   </section>
   
   
