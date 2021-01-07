@@ -67,7 +67,6 @@ export const Home = () => {
         const btnLike = '.btnLike';
 
         feedArea.addEventListener('click', (event) => {
-
           const closestEditar = event.target.closest(btnEditar);
           if (closestEditar && feedArea.contains(closestEditar)) {
             const closestTextarea = closestEditar.parentNode.querySelector('.editar-post');
@@ -94,7 +93,6 @@ export const Home = () => {
 
           const closestLike = event.target.closest(btnLike);
           if (closestLike && feedArea.contains(closestLike)) {
-
             const closestIdLike = closestLike.parentNode.querySelector('.id-escondido').innerText;
 
             const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
@@ -114,6 +112,7 @@ export const Home = () => {
                     postJafoiCurtidoAlgumaVez = true;
                     alert('post já foi curtido por você!');
                   }
+                  renderPage();
                 }
               });
 
@@ -122,8 +121,8 @@ export const Home = () => {
                 firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
                   .add(usuarioQueCurtiu)
                   .then(() => { });
+                renderPage();
               }
-
             });
           }
 
@@ -139,7 +138,6 @@ export const Home = () => {
             }
           }
         }, false);
-
       });
 
     firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
@@ -149,11 +147,10 @@ export const Home = () => {
           feedArea.innerHTML = cardsOk;
         }
         if (change.type === 'modified') {
-          renderizarPosts(change.doc.data());
-          
+          renderPage(change.doc.data());
         }
         if (change.type === 'removed') {
-          renderizarPosts(change.doc.data());
+          renderPage(change.doc.data());
         }
       });
     });
@@ -167,41 +164,6 @@ export const Home = () => {
       const informacao = doc.data();
       const idPost = doc.id;
       let cardPost = '';
-
-      if (informacao.uid === firebase.auth().currentUser.uid) {
-        cardPost = `
-      <div class="card-post">
-      <div class="info-post">
-
-        <h2 class="nome-usuario">${informacao.name}</h2>
-        <button class="btn-editar" id="btnEditar">Editar</button>
-        <button  class="btn-excluir" id="btnExcluirPost">X</button>
-       
-      </div>
-        <p class="texto-post" id="post">${informacao.post}</p>
-        <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
-        <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
-        <p class="id-escondido">${idPost}</p>
-        <p class="uid-escondido">${informacao.uid}</p>
-        <p class="mostra-like">${informacao.likes}</p>
-      </div>
-      `;
-      } else {
-        cardPost = `
-      <div class="card-post">
-        <h2 class="nome-usuario">${informacao.name}</h2>
-        <p class="texto-post" id="post">${informacao.post}</p>
-        <p class="id-escondido">${idPost}</p>
-        <p class="uid-escondido">${informacao.uid}</p>
-        <div class="div-like">
-          <p class="id-escondido">${idPost}</p>
-          <button class="btnLike" id="btnLike" data-id =${informacao.uid}>Curtir</button>
-          <p class="mostra-like">${informacao.likes}</p>
-        </div>
-      </div>
-      `;
-      }
-
       if (informacao.uid === firebase.auth().currentUser.uid) {
         cardPost = `
       <div class="card-post">
@@ -258,5 +220,3 @@ export const Home = () => {
 
   return rootElement;
 };
-
-
