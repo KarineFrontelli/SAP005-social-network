@@ -5,49 +5,135 @@
 }
 
 body {
-  width: 100vw;
-  height:100vh;
   background-color: #fdfd96;
-
 }
 
-.login{
-  margin-top: 20vh;
+.login,
+.cadastro {
+  height:100vh;
+  background-color: #1c1c1c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-logo {
+  width: 13em;
+}
+
+.order-login {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login .img-logo {
-  width: 10em;
+.input-login {
+  width: 85vw ;
+  background-color: transparent;
+  opacity: 0.60; 
+  border-radius: 7px;
+  border: 2px solid #FBF395;
+  padding: 0.8em;
+  margin-top: 0.6em;
 }
 
-.login button {
+.btn-Login,
+.criar-Conta {
+  background-color: #FAE62E;
+  width: 60vw;
+  height: 2.6em;
+  margin-top: 0.6em;
+  border-radius: 7px;
+  border: none;
+  font-size: 1em;
+}
+
+.login-com{
+  color: #FBF395;
   margin-top: 2em;
 }
 
+.outros-logins{
+  display: flex;
+  width: 85vw;
+  justify-content: space-between;
+}
+
+.btn-Facebook, 
+.btn-Google {
+  width: 40vw;
+  height: 2.6em;
+  background-color: #FBF395;
+  margin-top: 0.6em;
+  border-radius: 7px;
+  border: none;
+  font-size: 1em;
+}
+
+.criar-Cadastro {
+  background-color: transparent;
+  border: 0;
+  color: #FBF395;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  position: relative;
+  text-decoration: underline;
+  margin-top: 2em;
+} 
+
+header {
+  width: 90vw;
+  margin: 5vw;
+  display: flex;
+  height: 3em;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .name-user {
-  color: #1E1E1E;
-  padding: 1em;
+  color: #1c1c1c;
   font-size: 1.5em;
 }
 
-.post-enviar{
+.btn-Logout {
+  padding: 0.5em;
+  background-color: #1c1c1c;
+  color: #FBF395;
+  border-radius: 7px;
+  border:none;
+  width: 20vw;
+  height: 2em;
+  font-size: 1em;
+}
+
+.btn-post{
+  background-color: #1C1C1C;
   margin-top: 1em;
+  width: 30vw;
+  height:2.6em;
+  color:#FBF395 ;
+  margin-top: 0.6em;
+  border-radius: 7px;
+  border:none;
+  font-size:1em;
+}
+
+.post-enviar {
+  width: 90vw;
+  margin: 5vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+
 }
-.post{
-  width:70vw;
-  height: 20vh;
+.post {
+  width:90vw;
+  height: 10em;
   padding: 1em;
   border-radius: 10px;
-}
-.post-enviar button{
-  margin-left: 13em;
-  margin-top: 1em;
-  padding: 0.5em;
+  border: 2px solid #1c1c1c;
 }
 
 .posts-enviados {
@@ -58,9 +144,10 @@ body {
   margin-top: 1em;
 }
 
+
 .card-post {
   border: #000000 1px solid;
-  width: 70vw;
+  width: 90vw;
   margin-bottom: 0.5em;
   border-radius: 10px;
   padding: 1em;
@@ -69,63 +156,65 @@ body {
 
 .nome-usuario {
   font-size: 1em;
-  border-bottom: #1E1E1E 1px solid;
-  margin-bottom: 0.3em;
 }
+
+/*  USAR PARA A LÓGICA FUNCIONAR
+.nome-usuario {
+  font-size: 1em;
+  display: inline;
+} */
 
 .texto-post {
   color: #333333;
 }
 
-.uid-escondido,
-.id-escondido, /*{
-  visibility: hidden;
-} */
 
-/* .btn-excluir,*/
-.editar-post,
-.btn-salvar-editado
-/* .btn-editar */ {
-  display: none;
+
+.info-post { 
+ display: flex;
+ justify-content: space-between;
+ border-bottom: 2px solid #1c1c1c; 
+ align-items:center; 
+ padding-bottom: 0.3em;
 }
 
-.btn-Logout{
-  margin-top: 1em;
-  margin-left: 1em;
-  padding: 0.5em;
+.btn-editar,
+.btn-salvar-editado {
+
+  background: #1C1C1C;
+  border-radius: 7px;
+  color: #FBF395;
+  height: 5vh;
+  width: 20vw;
+  border: none;
+
 }
 
-.btn-Facebook{
-  width: 55vw;
-}
+.btn-excluir {
 
-.btn-Google{
-  width: 55vw;
+  background: transparent;
+  color: #1c1c1c;
+  border: none;
+  font-weight: bold;
 }
 
 .btnLike {
   margin-left:12em;
-  margin-top: 2em;
+  margin-top: 2em; 
+  background: #1C1C1C;
+  border-radius: 7px;
+  color: #FBF395;
+  height: 5vh;
+  width: 20vw;
+  border: none;
   
 }
 
-.cadastro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10em; 
-  padding: 1em;
-}
 
-.link {
-  background-color: transparent;
-  border: 0;
-  color: #00f;
-  cursor: pointer;
-  display: inline-block;
-  padding: 0;
-  position: relative;
-  text-decoration: underline;
- 
+.uid-escondido,
+.id-escondido, 
+.editar-post,
+.btn-salvar-editado
+ {
+  display: none;
 }

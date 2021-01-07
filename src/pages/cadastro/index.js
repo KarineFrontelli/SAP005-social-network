@@ -5,20 +5,21 @@ export const Cadastro = () => {
   const pageCadastro = `
     <section class="form">
     
-     
-      <form class=" cadastro">
-      <h1>Criar uma nova conta</h1>
+    
+
+      <form class="cadastro">
+      <img class="img-logo"  src="../img/Logo.jpeg" alt="logo da  página">
         <div>
-          <input class= "input "type="text" id="inputName" placeholder="Nome"/>
+          <input class="input-login" "type="text" id="inputName" placeholder="Nome"/>
         </div>
         <div>
-          <input type="email" id="inputEmail" placeholder="Email ex:email@email.com.br"/>
+          <input class="input-login" type="email" id="inputEmail" placeholder="Email ex:email@email.com.br"/>
         </div>
         <div>
-          <input type="password" id="inputSenha"  placeholder="Senha"/>
+          <input class="input-login" type="password" id="inputSenha"  placeholder="Senha: mínimo 6 caracteres"/>
         </div>
           
-          <button class="link" id="criarConta"> Cadastrar </button>
+          <button class="link criar-Conta" id="criarConta"> Criar Conta </button>
 
      
       </form>
