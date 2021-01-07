@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 body {
@@ -146,6 +146,7 @@ header {
 
 
 .card-post {
+  
   border: #000000 1px solid;
   width: 90vw;
   margin-bottom: 0.5em;
@@ -156,13 +157,8 @@ header {
 
 .nome-usuario {
   font-size: 1em;
-}
-
-/*  USAR PARA A LÓGICA FUNCIONAR
-.nome-usuario {
-  font-size: 1em;
   display: inline;
-} */
+} 
 
 .texto-post {
   color: #333333;
@@ -171,6 +167,7 @@ header {
 
 
 .info-post { 
+  
  display: flex;
  justify-content: space-between;
  border-bottom: 2px solid #1c1c1c; 
@@ -178,29 +175,31 @@ header {
  padding-bottom: 0.3em;
 }
 
-.btn-editar,
-.btn-salvar-editado {
-
+.btn-editar {
   background: #1C1C1C;
   border-radius: 7px;
   color: #FBF395;
   height: 5vh;
   width: 20vw;
   border: none;
-
+  margin-left: 4em;
 }
 
 .btn-excluir {
-
   background: transparent;
   color: #1c1c1c;
   border: none;
   font-weight: bold;
 }
 
+.div-like {
+  display: flex;
+}
+
 .btnLike {
-  margin-left:12em;
-  margin-top: 2em; 
+  
+  /* margin-left:15em; */
+  margin-top: 6em; 
   background: #1C1C1C;
   border-radius: 7px;
   color: #FBF395;
@@ -208,6 +207,11 @@ header {
   width: 20vw;
   border: none;
   
+}
+
+.mostra-like {
+  display: inline;
+  margin-top: 0.5em;
 }
 
 
