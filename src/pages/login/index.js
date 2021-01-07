@@ -25,7 +25,7 @@ export const Login = () => {
       </div>
       <button class= "link criar-Cadastro" id="criarCadastro">Não é membro? Criar conta</button>
     </section>
-  `
+  `;
 
   const rootElement = document.createElement('div');
   rootElement.innerHTML = btnGoogle;
