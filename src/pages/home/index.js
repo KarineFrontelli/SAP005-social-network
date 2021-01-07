@@ -6,13 +6,13 @@ export const Home = () => {
   // Coloque sua página
   const pageHome = `
       <header>
-      <button class="btn-Logout" id="btnLogout">Sair</button>
         <h1 class="name-user" id="userName"></h1>
+        <button class="btn-Logout" id="btnLogout">Sair</button>
       </header>
       <main class="main-home">
         <section class="post-enviar">
           <textarea class="post" id="textoPost" placeholder="Conte sobre sua última cerveja..."></textarea>
-          <button id="btnPost">Postar</button>
+          <button id="btnPost" class="btn-post">Postar</button>
         </section>
         <section class="posts-enviados" id="feedArea">
         </section>
@@ -170,12 +170,18 @@ export const Home = () => {
       const informacao = doc.data();
       const idPost = doc.id;
       let cardPost = '';
+
       if (informacao.uid === firebase.auth().currentUser.uid) {
         cardPost = `
       <div class="card-post">
+      <div class="info-post">
+
         <h2 class="nome-usuario">${informacao.name}</h2>
-        <button class="btn-editar" id="btnEditar">editar post</button>
-        <button  class="btn-excluir" id="btnExcluirPost">excluir post</button>
+        <div class="btn-edit-exclui">
+        <button class="btn-editar" id="btnEditar">Editar</button>
+        <button  class="btn-excluir" id="btnExcluirPost">X</button>
+        </div>
+      </div>
         <p class="texto-post" id="post">${informacao.post}</p>
         <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
         <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
@@ -193,12 +199,45 @@ export const Home = () => {
         <p class="uid-escondido">${informacao.uid}</p>
         <div>
           <p class="id-escondido">${idPost}</p>
-          <button class="btnLike" id="btnLike" data-id =${informacao.uid}>curtir</button>
+          <button class="btnLike" id="btnLike" data-id =${informacao.uid}>Curtir</button>
           <p class="mostra-like">${informacao.likes}</p>
         </div>
       </div>
       `;
       }
+
+      // !!!!!!!!!! USAR PARA A LÓGICA FUNCIONAR !!!!!!!!!!
+      // if (informacao.uid === firebase.auth().currentUser.uid) {
+      //   cardPost = `
+      // <div class="card-post">
+        
+      //   <h2 class="nome-usuario">${informacao.name}</h2>
+      //   <button class="btn-editar" id="btnEditar">Editar</button>
+      //   <button  class="btn-excluir" id="btnExcluirPost">X</button>
+
+      //   <p class="texto-post" id="post">${informacao.post}</p>
+      //   <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
+      //   <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
+      //   <p class="id-escondido">${idPost}</p>
+      //   <p class="uid-escondido">${informacao.uid}</p>
+      //   <p class="mostra-like">${informacao.likes}</p>
+      // </div>
+      // `;
+      // } else {
+      //   cardPost = `
+      // <div class="card-post">
+      //   <h2 class="nome-usuario">${informacao.name}</h2>
+      //   <p class="texto-post" id="post">${informacao.post}</p>
+      //   <p class="id-escondido">${idPost}</p>
+      //   <p class="uid-escondido">${informacao.uid}</p>
+      //   <div>
+      //     <p class="id-escondido">${idPost}</p>
+      //     <button class="btnLike" id="btnLike" data-id =${informacao.uid}>Curtir</button>
+      //     <p class="mostra-like">${informacao.likes}</p>
+      //   </div>
+      // </div>
+      // `;
+      // }
 
       cards += cardPost;
     });
@@ -224,3 +263,5 @@ export const Home = () => {
 
   return rootElement;
 };
+
+
