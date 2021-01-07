@@ -40,7 +40,7 @@ export const Home = () => {
   function criarPost() {
     const userName = firebase.auth().currentUser.displayName;
     if (textoPost.value === '') {
-      console.log('Digite alguma coisa!');
+      alert('Digite alguma coisa!');
     } else {
       const feed = {
         post: textoPost.value,
@@ -68,7 +68,6 @@ export const Home = () => {
 
         feedArea.addEventListener('click', (event) => {
 
-          console.log("foi clicado")
           const closestEditar = event.target.closest(btnEditar);
           if (closestEditar && feedArea.contains(closestEditar)) {
             const closestTextarea = closestEditar.parentNode.querySelector('.editar-post');
@@ -95,10 +94,9 @@ export const Home = () => {
 
           const closestLike = event.target.closest(btnLike);
           if (closestLike && feedArea.contains(closestLike)) {
-            // console.log('Curtiu tá Top');
+
             const closestIdLike = closestLike.parentNode.querySelector('.id-escondido').innerText;
 
-            // console.log(closestIdLike);
             const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
 
             let postJafoiCurtidoAlgumaVez = false;
@@ -120,11 +118,10 @@ export const Home = () => {
               });
 
               if (postJafoiCurtidoAlgumaVez === false) {
-              // alert("like ");
                 likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
                 firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
                   .add(usuarioQueCurtiu)
-                  .then(() => {});
+                  .then(() => { });
               }
 
             });
@@ -177,11 +174,42 @@ export const Home = () => {
       <div class="info-post">
 
         <h2 class="nome-usuario">${informacao.name}</h2>
-        <div class="btn-edit-exclui">
         <button class="btn-editar" id="btnEditar">Editar</button>
         <button  class="btn-excluir" id="btnExcluirPost">X</button>
+       
+      </div>
+        <p class="texto-post" id="post">${informacao.post}</p>
+        <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
+        <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
+        <p class="id-escondido">${idPost}</p>
+        <p class="uid-escondido">${informacao.uid}</p>
+        <p class="mostra-like">${informacao.likes}</p>
+      </div>
+      `;
+      } else {
+        cardPost = `
+      <div class="card-post">
+        <h2 class="nome-usuario">${informacao.name}</h2>
+        <p class="texto-post" id="post">${informacao.post}</p>
+        <p class="id-escondido">${idPost}</p>
+        <p class="uid-escondido">${informacao.uid}</p>
+        <div class="div-like">
+          <p class="id-escondido">${idPost}</p>
+          <button class="btnLike" id="btnLike" data-id =${informacao.uid}>Curtir</button>
+          <p class="mostra-like">${informacao.likes}</p>
         </div>
       </div>
+      `;
+      }
+
+      if (informacao.uid === firebase.auth().currentUser.uid) {
+        cardPost = `
+      <div class="card-post">
+        
+        <h2 class="nome-usuario">${informacao.name}</h2>
+        <button class="btn-editar" id="btnEditar">Editar</button>
+        <button  class="btn-excluir" id="btnExcluirPost">X</button>
+
         <p class="texto-post" id="post">${informacao.post}</p>
         <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
         <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
@@ -205,39 +233,6 @@ export const Home = () => {
       </div>
       `;
       }
-
-      // !!!!!!!!!! USAR PARA A LÓGICA FUNCIONAR !!!!!!!!!!
-      // if (informacao.uid === firebase.auth().currentUser.uid) {
-      //   cardPost = `
-      // <div class="card-post">
-        
-      //   <h2 class="nome-usuario">${informacao.name}</h2>
-      //   <button class="btn-editar" id="btnEditar">Editar</button>
-      //   <button  class="btn-excluir" id="btnExcluirPost">X</button>
-
-      //   <p class="texto-post" id="post">${informacao.post}</p>
-      //   <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
-      //   <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
-      //   <p class="id-escondido">${idPost}</p>
-      //   <p class="uid-escondido">${informacao.uid}</p>
-      //   <p class="mostra-like">${informacao.likes}</p>
-      // </div>
-      // `;
-      // } else {
-      //   cardPost = `
-      // <div class="card-post">
-      //   <h2 class="nome-usuario">${informacao.name}</h2>
-      //   <p class="texto-post" id="post">${informacao.post}</p>
-      //   <p class="id-escondido">${idPost}</p>
-      //   <p class="uid-escondido">${informacao.uid}</p>
-      //   <div>
-      //     <p class="id-escondido">${idPost}</p>
-      //     <button class="btnLike" id="btnLike" data-id =${informacao.uid}>Curtir</button>
-      //     <p class="mostra-like">${informacao.likes}</p>
-      //   </div>
-      // </div>
-      // `;
-      // }
 
       cards += cardPost;
     });
