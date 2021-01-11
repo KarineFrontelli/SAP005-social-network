@@ -208,6 +208,10 @@ header {
   
 }
 
+.btnLike-red {
+  background: red;
+}
+
 .mostra-like {
   display: inline;
   margin-top: 0.5em;

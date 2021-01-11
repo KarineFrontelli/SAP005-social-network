@@ -24,20 +24,14 @@ describe('Render página de login', () => {
   });
 });
 
-// describe('Render página home', () => {
-//   it('carrega a página', () => {
-//     expect(Home()).toMatchSnapshot();
-//   });
-// });
-
 describe('Testar renderPage', () => {
   it('é uma função', () => {
     expect(typeof renderPage).toBe('function');
   });
 });
 
-// describe('Render página home', () => {
-//   it('carrega a página', () => {
-//     expect(Home()).toMatchSnapshot();
-//   });
-// });
+describe('Testar login', () => {
+  it('é uma função', () => {
+    expect(typeof Login).toBe('function');
+  });
+});

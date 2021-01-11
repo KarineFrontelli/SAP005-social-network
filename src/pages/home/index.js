@@ -1,6 +1,8 @@
 // import { renderPage } from '../../router.js';
-import { nomeUsuario, editPost } from '../../services/index.js';
-import { createPostMaker, postTemplate } from './post.js';
+import {
+  nomeUsuario, editPost, excluirPostBanco, likeFirebase,
+} from '../../services/index.js';
+import { createPostMaker, postTemplate } from '../../components/post.js';
 
 // import { nomeUsuario } from './data.js';
 
@@ -43,12 +45,6 @@ export const Home = () => {
     });
   }
 
-  // btnPost.addEventListener('click', () => {
-  //   const post = criarPost();
-  //   criarBanco(post);
-  //   renderPage();
-  // } );
-
   function renderizarPosts() {
     firebase.firestore().collection('posts').orderBy('date', 'desc').get()
       .then((snapshot) => {
@@ -56,7 +52,6 @@ export const Home = () => {
         feedArea.innerHTML = cardsOk;
 
         const btnEditar = feedArea.querySelectorAll('.btn-editar');
-
         btnEditar.forEach((button) => {
           button.addEventListener('click', (e) => {
             mostrarAreaEditar(e);
@@ -85,79 +80,81 @@ export const Home = () => {
           editPost(idPost, novoTexto)
             .then(() => {
               textoPost.innerHTML = textareaPost.value;
-              areaEditar.style.display = "none";
+              areaEditar.style.display = 'none';
             })
             .catch(() => {
               alert('Deu ruim aí');
             });
         };
 
-        // feedArea.addEventListener('click', (event) => {
-        //   const closestLike = event.target.closest(btnLike);
-        //   if (closestLike && feedArea.contains(closestLike)) {
-        //     const closestIdLike = closestLike.parentNode.querySelector('.id-escondido').innerText;
+        const btnExcluir = feedArea.querySelectorAll('.btn-excluir');
+        btnExcluir.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            excluirPost(e);
+          });
+        });
 
-        //     const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
+        const excluirPost = (e) => {
+          const cadaPost = e.target.parentNode;
+          const idPost = cadaPost.querySelector('.id-escondido').innerText;
+          if (confirm('Tem certeza que deseja excluir esse post?')) {
+            excluirPostBanco(idPost)
+              .then(() => {
+                cadaPost.style.display = 'none';
+              })
+              .catch(() => {
+                alert('Deu ruim aí');
+              });
+          }
+        };
 
-        //     let postJafoiCurtidoAlgumaVez = false;
-        //     const usuarioLogado = firebase.auth().currentUser.uid;
-        //     const usuarioLogadoJaCurtiuEssePost = firebase.firestore().collection('posts')
-        //       .doc(closestIdLike).collection('TB_QUEM_CURTIU');
-        //     const usuarioQueCurtiu = {
-        //       usuarioQueCurtiu: firebase.auth().currentUser.uid,
-        //     };
+        const btnLike = feedArea.querySelectorAll('.btnLike');
+        btnLike.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            contarLike(e);
+          });
+        });
 
-        //     usuarioLogadoJaCurtiuEssePost.get().then((querySnapshot) => {
-        //       querySnapshot.forEach((doc) => {
-        //         if (postJafoiCurtidoAlgumaVez === false) {
-        //           if (doc.data().usuarioQueCurtiu === usuarioLogado) {
-        //             postJafoiCurtidoAlgumaVez = true;
-        //             alert('post já foi curtido por você!');
-        //           }
-        //           // renderPage();
-        //         }
-        //       });
+        const contarLike = (e) => {
+          const cadaPost = e.target.parentNode;
+          const idPost = cadaPost.querySelector('.id-escondido').innerText;
 
-        //       if (postJafoiCurtidoAlgumaVez === false) {
-        //         likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
-        //         firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
-        //           .add(usuarioQueCurtiu)
-        //           .then(() => { });
-        //         // renderPage();
-        //       }
-        //     });
-        //   }
+          let postJafoiCurtidoAlgumaVez = false;
 
-        //   const closestExcluir = event.target.closest(btnExcluir);
-        //   if (closestExcluir && feedArea.contains(closestExcluir)) {
-        //     const closestIdPost = closestExcluir.parentNode.querySelector('.id-escondido').innerText;
+          const usuarioLogadoJaCurtiuEssePost = firebase.firestore().collection('posts')
+            .doc(idPost).collection('TB_QUEM_CURTIU');
 
-        //     if (confirm('Tem certeza que deseja excluir esse post?')) {
-        //       firebase.firestore().collection('posts').doc(closestIdPost).delete()
-        //         .then(() => {
-        //         });
-        //       // renderPage();
-        //     }
-        //   }
-        // }, false);
+          const usuarioLogado = firebase.auth().currentUser.uid;
+
+          const usuarioQueCurtiu = {
+            usuarioQueCurtiu: firebase.auth().currentUser.uid,
+          };
+
+          usuarioLogadoJaCurtiuEssePost.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              if (postJafoiCurtidoAlgumaVez === false) {
+                if (doc.data().usuarioQueCurtiu === usuarioLogado) {
+                  postJafoiCurtidoAlgumaVez = true;
+                  alert('post já foi curtido por você!');
+                }
+              }
+            });
+
+            if (postJafoiCurtidoAlgumaVez === false) {
+              likeFirebase(idPost)
+                .then(() => {
+                  firebase.firestore().collection('posts').doc(idPost).collection('TB_QUEM_CURTIU')
+                    .add(usuarioQueCurtiu)
+                    .then(() => {});
+                })
+                .catch(() => {
+                  alert('Deu ruim aí');
+                });
+            }
+          });
+        };
       });
-
-    // firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
-    //   snapshot.docChanges().forEach((change) => {
-    //     if (change.type === 'added') {
-    //       const cardsOk = adicionaPostATela(snapshot.docs);
-    //       feedArea.innerHTML = cardsOk;
-    //     }
-    //     if (change.type === 'modified') {
-    //       renderizarPosts(change.doc.data());
-    //     }
-    //     if (change.type === 'removed') {
-    //       renderizarPosts(change.doc.data());
-    //     }
-    //   });
-    // });
   }
-  renderizarPosts();
 
   function adicionaPostATela(data) {
     let cards = '';
@@ -206,35 +203,15 @@ export const Home = () => {
     return cards;
   }
 
-  // firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
-  //   snapshot.docChanges().forEach((feed) => {
-  //     if (feed.type === 'added') {
-  //       adicionaPostATela(feed.doc.data(), feed.doc.id);
-  //     }
-  //   });
-  // });
-
   const initialize = () => {
     loadEvents();
     createPost({
       formEl,
     });
+    renderizarPosts();
   };
 
   initialize();
 
   return rootElement;
 };
-
-// switch(postJafoiCurtidoAlgumaVez === false) {
-//   case(doc.data().usuarioQueCurtiu === usuarioLogado):
-//     postJafoiCurtidoAlgumaVez = true;
-//     alert('post já foi curtido por você!');
-//     break;
-//   case (postJafoiCurtidoAlgumaVez === false):
-//     likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
-//     firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
-//       .add(usuarioQueCurtiu)
-//       .then(() => { });
-//       break;
-// }

@@ -1,4 +1,4 @@
-import { renderPage } from '../../router.js';
+import { renderPage } from '../router.js';
 
 export const createPostMaker = ({
   database,
