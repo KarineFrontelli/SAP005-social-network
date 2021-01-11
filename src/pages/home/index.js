@@ -55,118 +55,91 @@ export const Home = () => {
         const cardsOk = adicionaPostATela(snapshot.docs);
         feedArea.innerHTML = cardsOk;
 
-        // const btnEditar = feedArea.querySelectorAll('.btn-editar');
+        const btnEditar = feedArea.querySelectorAll('.btn-editar');
 
-        // btnEditar.forEach((button) => {
-        //   button.addEventListener('click', (e) => {
-        //     mostrarAreaEditar(e);
-        //   });
-        // });
+        btnEditar.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            mostrarAreaEditar(e);
+          });
+        });
 
-        // const mostrarAreaEditar = (e) => {
-        //   const cadaPost = e.target.parentNode;
-        //   const areaEditar = cadaPost.querySelector('.area-editar');
-          
-        //   areaEditar.style.display = 'block';
-          
-        //   console.log(idPost);
-        //   const btnEnviarComent = cadaPost.querySelector('.btn-salvar-editado');
+        const mostrarAreaEditar = (e) => {
+          const cadaPost = e.target.parentNode;
+          const areaEditar = cadaPost.querySelector('.area-editar');
+          areaEditar.style.display = 'block';
 
-        //   btnEnviarComent.addEventListener('click', () => {
-        //     sendPost(cadaPost);
-        //   });
-        // };
+          const btnEnviarComent = cadaPost.querySelector('.btn-salvar-editado');
 
-        // const sendPost = (cadaPost) => {
-        //   const textareaPost = cadaPost.querySelector('.editar-post');
-        //   const textoPost = cadaPost.querySelector('.texto-post');
-          
+          btnEnviarComent.addEventListener('click', () => {
+            sendPost(cadaPost);
+          });
+        };
 
-        //   editPost(textareaPost.value)
-        //     .then(() => {
-        //       textoPost.innerHTML = textareaPost.value;
-        //     })
-        //     .catch(() => {
-        //       alert('Deu ruim aí');
+        const sendPost = (cadaPost) => {
+          const areaEditar = cadaPost.querySelector('.area-editar');
+          const textareaPost = cadaPost.querySelector('.editar-post');
+          const textoPost = cadaPost.querySelector('.texto-post');
+          const idPost = cadaPost.querySelector('.id-escondido').innerText;
+          const novoTexto = textareaPost.value;
+
+          editPost(idPost, novoTexto)
+            .then(() => {
+              textoPost.innerHTML = textareaPost.value;
+              areaEditar.style.display = "none";
+            })
+            .catch(() => {
+              alert('Deu ruim aí');
+            });
+        };
+
+        // feedArea.addEventListener('click', (event) => {
+        //   const closestLike = event.target.closest(btnLike);
+        //   if (closestLike && feedArea.contains(closestLike)) {
+        //     const closestIdLike = closestLike.parentNode.querySelector('.id-escondido').innerText;
+
+        //     const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
+
+        //     let postJafoiCurtidoAlgumaVez = false;
+        //     const usuarioLogado = firebase.auth().currentUser.uid;
+        //     const usuarioLogadoJaCurtiuEssePost = firebase.firestore().collection('posts')
+        //       .doc(closestIdLike).collection('TB_QUEM_CURTIU');
+        //     const usuarioQueCurtiu = {
+        //       usuarioQueCurtiu: firebase.auth().currentUser.uid,
+        //     };
+
+        //     usuarioLogadoJaCurtiuEssePost.get().then((querySnapshot) => {
+        //       querySnapshot.forEach((doc) => {
+        //         if (postJafoiCurtidoAlgumaVez === false) {
+        //           if (doc.data().usuarioQueCurtiu === usuarioLogado) {
+        //             postJafoiCurtidoAlgumaVez = true;
+        //             alert('post já foi curtido por você!');
+        //           }
+        //           // renderPage();
+        //         }
+        //       });
+
+        //       if (postJafoiCurtidoAlgumaVez === false) {
+        //         likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
+        //         firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
+        //           .add(usuarioQueCurtiu)
+        //           .then(() => { });
+        //         // renderPage();
+        //       }
         //     });
-        // };
+        //   }
 
-        const btnEditar = '.btn-editar';
-        const btnLike = '.btnLike';
-        const btnExcluir = '.btn-excluir';
+        //   const closestExcluir = event.target.closest(btnExcluir);
+        //   if (closestExcluir && feedArea.contains(closestExcluir)) {
+        //     const closestIdPost = closestExcluir.parentNode.querySelector('.id-escondido').innerText;
 
-        feedArea.addEventListener('click', (event) => {
-          const closestEditar = event.target.closest(btnEditar);
-          if (closestEditar && feedArea.contains(closestEditar)) {
-            const closestTextarea = closestEditar.parentNode.querySelector('.editar-post');
-            closestTextarea.style.display = 'block';
-            const closestBtnSalvarEdicao = closestEditar.parentNode.querySelector('.btn-salvar-editado');
-            closestBtnSalvarEdicao.style.display = 'block';
-
-            closestBtnSalvarEdicao.addEventListener('click', () => {
-              closestTextarea.style.display = 'none';
-              closestBtnSalvarEdicao.style.display = 'none';
-              const closestPost = closestEditar.parentNode.querySelector('.texto-post');
-              const postFinal = closestTextarea.value;
-              closestPost.innerHTML = postFinal;
-              const closestId = closestEditar.parentNode.querySelector('.id-escondido').innerText;
-
-              firebase.firestore().collection('posts').doc(closestId).update({
-                post: postFinal,
-              })
-                .then(() => {
-                  closestPost.innerHTML = postFinal;
-                });
-            });
-          }
-
-          const closestLike = event.target.closest(btnLike);
-          if (closestLike && feedArea.contains(closestLike)) {
-            const closestIdLike = closestLike.parentNode.querySelector('.id-escondido').innerText;
-
-            const likeBtn = firebase.firestore().collection('posts').doc(closestIdLike);
-
-            let postJafoiCurtidoAlgumaVez = false;
-            const usuarioLogado = firebase.auth().currentUser.uid;
-            const usuarioLogadoJaCurtiuEssePost = firebase.firestore().collection('posts')
-              .doc(closestIdLike).collection('TB_QUEM_CURTIU');
-            const usuarioQueCurtiu = {
-              usuarioQueCurtiu: firebase.auth().currentUser.uid,
-            };
-
-            usuarioLogadoJaCurtiuEssePost.get().then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                if (postJafoiCurtidoAlgumaVez === false) {
-                  if (doc.data().usuarioQueCurtiu === usuarioLogado) {
-                    postJafoiCurtidoAlgumaVez = true;
-                    alert('post já foi curtido por você!');
-                  }
-                  // renderPage();
-                }
-              });
-
-              if (postJafoiCurtidoAlgumaVez === false) {
-                likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
-                firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
-                  .add(usuarioQueCurtiu)
-                  .then(() => { });
-                // renderPage();
-              }
-            });
-          }
-
-          const closestExcluir = event.target.closest(btnExcluir);
-          if (closestExcluir && feedArea.contains(closestExcluir)) {
-            const closestIdPost = closestExcluir.parentNode.querySelector('.id-escondido').innerText;
-
-            if (confirm('Tem certeza que deseja excluir esse post?')) {
-              firebase.firestore().collection('posts').doc(closestIdPost).delete()
-                .then(() => {
-                });
-              // renderPage();
-            }
-          }
-        }, false);
+        //     if (confirm('Tem certeza que deseja excluir esse post?')) {
+        //       firebase.firestore().collection('posts').doc(closestIdPost).delete()
+        //         .then(() => {
+        //         });
+        //       // renderPage();
+        //     }
+        //   }
+        // }, false);
       });
 
     // firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
@@ -195,7 +168,7 @@ export const Home = () => {
       let cardPost = '';
       if (informacao.uid === firebase.auth().currentUser.uid) {
         cardPost = `
-      <div class="card-post">
+      <div class="card-post" data-id=${idPost}>
         
         <h2 class="nome-usuario">${informacao.name}</h2>
         <button class="btn-editar" id="btnEditar">Editar</button>

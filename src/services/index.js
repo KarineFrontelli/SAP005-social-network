@@ -1,10 +1,8 @@
-const firestore = firebase.firestore();
-const collectionEdit = firestore.collection('posts').doc();
+const firestore = firebase.firestore().collection('posts');
 
-export const editPost = (edit) => {
-  console.log(edit);
-  return collectionEdit.update({
-    post: true,
+export const editPost = (id, valorNovoPost) => {
+  return firestore.doc(id).update({
+    post: valorNovoPost,
   })
     .then(() => true)
     .catch((error) => error);
