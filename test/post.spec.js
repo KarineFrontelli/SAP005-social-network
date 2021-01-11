@@ -1,4 +1,4 @@
-import { createPostMaker, postTemplate } from '../src/pages/home/post.js';
+import { createPostMaker, postTemplate } from '../src/components/post.js';
 import { parse } from '../src/utils/index.js';
 
 const databaseMock = {

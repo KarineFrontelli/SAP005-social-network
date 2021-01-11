@@ -1,12 +1,20 @@
 const firestore = firebase.firestore().collection('posts');
 
-export const editPost = (id, valorNovoPost) => {
-  return firestore.doc(id).update({
-    post: valorNovoPost,
-  })
-    .then(() => true)
-    .catch((error) => error);
-};
+export const likeFirebase = (id) => firestore.doc(id).update({
+  likes: firebase.firestore.FieldValue.increment(1),
+})
+  .then(() => true)
+  .catch((error) => error);
+
+export const editPost = (id, valorNovoPost) => firestore.doc(id).update({
+  post: valorNovoPost,
+})
+  .then(() => true)
+  .catch((error) => error);
+
+export const excluirPostBanco = (id) => firestore.doc(id).delete()
+  .then(() => true)
+  .catch((error) => error);
 
 export const Google = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
