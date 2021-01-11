@@ -1,4 +1,6 @@
-import { renderPage } from '../../router.js';
+// import { renderPage } from '../../router.js';
+import { nomeUsuario, editPost } from '../../services/index.js';
+import { createPostMaker, postTemplate } from './post.js';
 
 // import { nomeUsuario } from './data.js';
 
@@ -10,9 +12,8 @@ export const Home = () => {
         <button class="btn-Logout" id="btnLogout">Sair</button>
       </header>
       <main class="main-home">
-        <section class="post-enviar">
-          <textarea class="post" id="textoPost" placeholder="Conte sobre sua última cerveja..."></textarea>
-          <button id="btnPost" class="btn-post">Postar</button>
+        <section>
+          ${postTemplate}
         </section>
         <section class="posts-enviados" id="feedArea">
         </section>
@@ -22,39 +23,31 @@ export const Home = () => {
   const rootElement = document.createElement('div');
   rootElement.innerHTML = pageHome;
 
-  const nomeUsuario = () => firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      document.querySelector('#userName').innerHTML = `Olá, ${user.displayName}`;
-    } else {
-      // No user is signed in.
-    }
-  });
-
   nomeUsuario();
 
-  const textoPost = rootElement.querySelector('#textoPost');
+  const formEl = rootElement.querySelector('[data-js-post]');
   const feedArea = rootElement.querySelector('#feedArea');
-  const btnPost = rootElement.querySelector('#btnPost');
-  btnPost.addEventListener('click', criarPost);
+  const btnLogout = rootElement.querySelector('#btnLogout');
 
-  function criarPost() {
-    const userName = firebase.auth().currentUser.displayName;
-    if (textoPost.value === '') {
-      alert('Digite alguma coisa!');
-    } else {
-      const feed = {
-        post: textoPost.value,
-        name: userName,
-        uid: firebase.auth().currentUser.uid,
-        date: new Date(),
-        likes: 0,
-      };
+  const createPost = createPostMaker({
+    database: firebase,
+  });
 
-      firebase.firestore().collection('posts').add(feed).then(() => {
-      });
-      renderPage();
-    }
+  const loadEvents = () => {
+    btnLogout.addEventListener('click', logout);
+  };
+
+  function logout() {
+    firebase.auth().signOut().then(() => {
+      window.location = '/';
+    });
   }
+
+  // btnPost.addEventListener('click', () => {
+  //   const post = criarPost();
+  //   criarBanco(post);
+  //   renderPage();
+  // } );
 
   function renderizarPosts() {
     firebase.firestore().collection('posts').orderBy('date', 'desc').get()
@@ -62,9 +55,45 @@ export const Home = () => {
         const cardsOk = adicionaPostATela(snapshot.docs);
         feedArea.innerHTML = cardsOk;
 
+        // const btnEditar = feedArea.querySelectorAll('.btn-editar');
+
+        // btnEditar.forEach((button) => {
+        //   button.addEventListener('click', (e) => {
+        //     mostrarAreaEditar(e);
+        //   });
+        // });
+
+        // const mostrarAreaEditar = (e) => {
+        //   const cadaPost = e.target.parentNode;
+        //   const areaEditar = cadaPost.querySelector('.area-editar');
+          
+        //   areaEditar.style.display = 'block';
+          
+        //   console.log(idPost);
+        //   const btnEnviarComent = cadaPost.querySelector('.btn-salvar-editado');
+
+        //   btnEnviarComent.addEventListener('click', () => {
+        //     sendPost(cadaPost);
+        //   });
+        // };
+
+        // const sendPost = (cadaPost) => {
+        //   const textareaPost = cadaPost.querySelector('.editar-post');
+        //   const textoPost = cadaPost.querySelector('.texto-post');
+          
+
+        //   editPost(textareaPost.value)
+        //     .then(() => {
+        //       textoPost.innerHTML = textareaPost.value;
+        //     })
+        //     .catch(() => {
+        //       alert('Deu ruim aí');
+        //     });
+        // };
+
         const btnEditar = '.btn-editar';
-        const btnExcluir = '.btn-excluir';
         const btnLike = '.btnLike';
+        const btnExcluir = '.btn-excluir';
 
         feedArea.addEventListener('click', (event) => {
           const closestEditar = event.target.closest(btnEditar);
@@ -112,7 +141,7 @@ export const Home = () => {
                     postJafoiCurtidoAlgumaVez = true;
                     alert('post já foi curtido por você!');
                   }
-                  renderPage();
+                  // renderPage();
                 }
               });
 
@@ -121,7 +150,7 @@ export const Home = () => {
                 firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
                   .add(usuarioQueCurtiu)
                   .then(() => { });
-                renderPage();
+                // renderPage();
               }
             });
           }
@@ -134,26 +163,26 @@ export const Home = () => {
               firebase.firestore().collection('posts').doc(closestIdPost).delete()
                 .then(() => {
                 });
-              renderPage();
+              // renderPage();
             }
           }
         }, false);
       });
 
-    firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === 'added') {
-          const cardsOk = adicionaPostATela(snapshot.docs);
-          feedArea.innerHTML = cardsOk;
-        }
-        if (change.type === 'modified') {
-          renderPage(change.doc.data());
-        }
-        if (change.type === 'removed') {
-          renderPage(change.doc.data());
-        }
-      });
-    });
+    // firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot((snapshot) => {
+    //   snapshot.docChanges().forEach((change) => {
+    //     if (change.type === 'added') {
+    //       const cardsOk = adicionaPostATela(snapshot.docs);
+    //       feedArea.innerHTML = cardsOk;
+    //     }
+    //     if (change.type === 'modified') {
+    //       renderizarPosts(change.doc.data());
+    //     }
+    //     if (change.type === 'removed') {
+    //       renderizarPosts(change.doc.data());
+    //     }
+    //   });
+    // });
   }
   renderizarPosts();
 
@@ -173,8 +202,10 @@ export const Home = () => {
         <button  class="btn-excluir" id="btnExcluirPost">X</button>
 
         <p class="texto-post" id="post">${informacao.post}</p>
-        <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
-        <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
+        <div class="area-editar">
+          <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
+          <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
+        </div>
         <p class="id-escondido">${idPost}</p>
         <p class="uid-escondido">${informacao.uid}</p>
         <p class="mostra-like">${informacao.likes}</p>
@@ -210,13 +241,27 @@ export const Home = () => {
   //   });
   // });
 
-  const btnLogout = rootElement.querySelector('#btnLogout');
-  btnLogout.addEventListener('click', logout);
-  function logout() {
-    firebase.auth().signOut().then(() => {
-      window.location = '/';
+  const initialize = () => {
+    loadEvents();
+    createPost({
+      formEl,
     });
-  }
+  };
+
+  initialize();
 
   return rootElement;
 };
+
+// switch(postJafoiCurtidoAlgumaVez === false) {
+//   case(doc.data().usuarioQueCurtiu === usuarioLogado):
+//     postJafoiCurtidoAlgumaVez = true;
+//     alert('post já foi curtido por você!');
+//     break;
+//   case (postJafoiCurtidoAlgumaVez === false):
+//     likeBtn.update({ likes: firebase.firestore.FieldValue.increment(1) });
+//     firebase.firestore().collection('posts').doc(closestIdLike).collection('TB_QUEM_CURTIU')
+//       .add(usuarioQueCurtiu)
+//       .then(() => { });
+//       break;
+// }

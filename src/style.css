@@ -108,7 +108,7 @@ header {
   font-size: 1em;
 }
 
-.btn-post{
+.post__button{
   background-color: #1C1C1C;
   width: 30vw;
   height:2.6em;
@@ -127,7 +127,7 @@ header {
   align-items: flex-end;
 
 }
-.post {
+.post__textarea {
   width:90vw;
   height: 10em;
   padding: 1em;
@@ -213,11 +213,12 @@ header {
   margin-top: 0.5em;
 }
 
-
+.area-editar,
 .uid-escondido,
-.id-escondido, 
-.editar-post,
-.btn-salvar-editado
- {
+.id-escondido {
   display: none;
+}
+
+.area-editar-block {
+  display: block;
 }

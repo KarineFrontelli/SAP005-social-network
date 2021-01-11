@@ -16,13 +16,16 @@ exports[`Render página de login carrega a página 1`] = `
     />
     
       
-    <form>
+    <form
+      class="order-login"
+    >
       
         
       <div>
         
           
         <input
+          class="input-login"
           id="inputEmail"
           placeholder="Email"
           type="email"
@@ -36,6 +39,7 @@ exports[`Render página de login carrega a página 1`] = `
         
           
         <input
+          class="input-login"
           id="inputSenha"
           placeholder="Senha"
           type="password"
@@ -46,51 +50,55 @@ exports[`Render página de login carrega a página 1`] = `
       
           
       <button
+        class="btn-Login"
         id="btnEmail"
       >
-        Entrar
+        Login
       </button>
       
           
-      <p>
-         Ou entre com...
+      <p
+        class="login-com"
+      >
+         Ou faça login com...
       </p>
       
       
     </form>
     
       
-    <button
-      id="btnGoogle"
+    <div
+      class="outros-logins"
     >
-      Google
-    </button>
-    
       
-    <button
-      id="btnFacebook"
-    >
-      Facebook
-    </button>
-    
-      
-    <p>
-      Não tem uma conta?
-    </p>
-    <p>
-      
-      
+        
       <button
-        class="link"
-        id="criarCadastro"
+        class="btn-Google"
+        id="btnGoogle"
       >
-        Cadastre-se
+        Google
       </button>
       
-
+        
+      <button
+        class="btn-Facebook"
+        id="btnFacebook"
+      >
+        Facebook
+      </button>
       
+      
+    </div>
     
-    </p>
+      
+    <button
+      class="link criar-Cadastro"
+      id="criarCadastro"
+    >
+      Não é membro? Criar conta
+    </button>
+    
+    
   </section>
   
   
