@@ -1,5 +1,12 @@
 const firestore = firebase.firestore().collection('posts');
 
+export const getAllPosts = () => firestore.orderBy('date', 'desc').get()
+.then((snapshot) => {
+  const posts = snapshot.docs;
+  console.log(posts);
+  return posts;
+});
+
 export const likeFirebase = (id) => firestore.doc(id).update({
   likes: firebase.firestore.FieldValue.increment(1),
 })
