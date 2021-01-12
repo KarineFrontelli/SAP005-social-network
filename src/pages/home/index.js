@@ -1,6 +1,6 @@
 // import { renderPage } from '../../router.js';
 import {
-  nomeUsuario, editPost, excluirPostBanco, likeFirebase,
+  nomeUsuario, editPost, excluirPostBanco, likeFirebase, getAllPosts
 } from '../../services/index.js';
 import { createPostMaker, postTemplate } from '../../components/post.js';
 
@@ -46,9 +46,13 @@ export const Home = () => {
   }
 
   function renderizarPosts() {
-    firebase.firestore().collection('posts').orderBy('date', 'desc').get()
-      .then((snapshot) => {
-        const cardsOk = adicionaPostATela(snapshot.docs);
+    const x = getAllPosts().then((res) => {
+      console.log(res);
+      return res
+    });
+    // firebase.firestore().collection('posts').orderBy('date', 'desc').get()
+    //   .then((snapshot) => {
+        const cardsOk = adicionaPostATela(x);
         feedArea.innerHTML = cardsOk;
 
         const btnEditar = feedArea.querySelectorAll('.btn-editar');
@@ -153,12 +157,12 @@ export const Home = () => {
             }
           });
         };
-      });
+      // });
   }
 
   function adicionaPostATela(data) {
     let cards = '';
-
+    console.log(data);
     data.forEach((doc) => {
       const informacao = doc.data();
       const idPost = doc.id;
