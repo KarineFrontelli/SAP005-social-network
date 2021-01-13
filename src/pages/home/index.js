@@ -1,11 +1,14 @@
 // import { renderPage } from '../../router.js';
 import {
-  nomeUsuario, editPost, excluirPostBanco, likeFirebase, getAllPosts
+  nomeUsuario,
+  editPost,
+  excluirPostBanco,
+  likeFirebase,
+  getAllPosts
 } from '../../services/index.js';
 import { createPostMaker, postTemplate } from '../../components/post.js';
 
 // import { nomeUsuario } from './data.js';
-
 export const Home = () => {
   // Coloque sua página
   const pageHome = `
@@ -160,52 +163,69 @@ export const Home = () => {
       // });
   }
 
-  function adicionaPostATela(data) {
-    let cards = '';
-    console.log(data);
-    data.forEach((doc) => {
-      const informacao = doc.data();
-      const idPost = doc.id;
-      let cardPost = '';
-      if (informacao.uid === firebase.auth().currentUser.uid) {
-        cardPost = `
-      <div class="card-post" data-id=${idPost}>
-        
-        <h2 class="nome-usuario">${informacao.name}</h2>
-        <button class="btn-editar" id="btnEditar">Editar</button>
-        <button  class="btn-excluir" id="btnExcluirPost">X</button>
 
-        <p class="texto-post" id="post">${informacao.post}</p>
-        <div class="area-editar">
-          <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
-          <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
-        </div>
-        <p class="id-escondido">${idPost}</p>
-        <p class="uid-escondido">${informacao.uid}</p>
-        <p class="mostra-like">${informacao.likes}</p>
-      </div>
-      `;
-      } else {
-        cardPost = `
-      <div class="card-post">
-        <h2 class="nome-usuario">${informacao.name}</h2>
-        <p class="texto-post" id="post">${informacao.post}</p>
-        <p class="id-escondido">${idPost}</p>
-        <p class="uid-escondido">${informacao.uid}</p>
-        <div>
+    function adicionaPostATela(data) {
+      // setTimeout(() => console.log(data), 5000)
+  
+      // function banana() {
+      //   console.log(data);
+      // }
+  
+      // setTimeout(() => { 
+        let cards = '';
+        const y = (data) => {
+          data.then((res) => {
+            console.log(res)
+            return res
+          }) 
+        } 
+        console.log(y(data))
+        console.log(data)
+        data.forEach((doc) => {
+        const informacao = doc.data();
+        const idPost = doc.id;
+        let cardPost = '';
+        if (informacao.uid === firebase.auth().currentUser.uid) {
+          cardPost = `
+        <div class="card-post ${idPost}" data-id="${idPost}">
+          
+          <h2 class="nome-usuario">${informacao.name}</h2>
+          <button class="btn-editar" id="btnEditar">Editar</button>
+          <button  class="btn-excluir" id="btnExcluirPost">X</button>
+  
+          <p class="texto-post" id="post">${informacao.post}</p>
+          <div class="area-editar">
+            <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
+            <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
+          </div>
           <p class="id-escondido">${idPost}</p>
-          <button class="btnLike" id="btnLike" data-id =${informacao.uid}>Curtir</button>
+          <p class="uid-escondido">${informacao.uid}</p>
           <p class="mostra-like">${informacao.likes}</p>
         </div>
-      </div>
-      `;
-      }
-
-      cards += cardPost;
-    });
-
-    return cards;
-  }
+        `;
+        } else {
+          cardPost = `
+        <div class="card-post ${idPost}" data-id=${idPost}>
+          <h2 class="nome-usuario">${informacao.name}</h2>
+          <p class="texto-post" id="post">${informacao.post}</p>
+          <p class="id-escondido">${idPost}</p>
+          <p class="uid-escondido">${informacao.uid}</p>
+          <div>
+            <p class="id-escondido">${idPost}</p>
+            <button class="btnLike" id="btnLike" data-id =${informacao.uid}>Curtir</button>
+            <p class="mostra-like">${informacao.likes}</p>
+          </div>
+        </div>
+        `;
+        }
+  
+        cards += cardPost;
+      });
+  
+      return cards;
+    // }, 5000)
+    }
+  
 
   const initialize = () => {
     loadEvents();

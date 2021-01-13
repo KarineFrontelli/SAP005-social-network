@@ -1,25 +1,25 @@
-const firestore = firebase.firestore().collection('posts');
+const firestore = () => firebase.firestore().collection('posts');
 
-export const getAllPosts = () => firestore.orderBy('date', 'desc').get()
+export const getAllPosts = () => firestore().orderBy('date', 'desc').get()
 .then((snapshot) => {
   const posts = snapshot.docs;
   console.log(posts);
   return posts;
 });
 
-export const likeFirebase = (id) => firestore.doc(id).update({
+export const likeFirebase = (id) => firestore().doc(id).update({
   likes: firebase.firestore.FieldValue.increment(1),
 })
   .then(() => true)
   .catch((error) => error);
 
-export const editPost = (id, valorNovoPost) => firestore.doc(id).update({
+export const editPost = (id, valorNovoPost) => firestore().doc(id).update({
   post: valorNovoPost,
 })
   .then(() => true)
   .catch((error) => error);
 
-export const excluirPostBanco = (id) => firestore.doc(id).delete()
+export const excluirPostBanco = (id) => firestore().doc(id).delete()
   .then(() => true)
   .catch((error) => error);
 
@@ -53,12 +53,12 @@ export const Email = (email, senha) => firebase.auth().signInWithEmailAndPasswor
 
 export const nomeUsuario = () => firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    document.querySelector('#userName').innerHTML = `Olá, ${user.displayName}`;
+    document.querySelector('#userName').innerHTML = `<img src="${user.photoURL}" height="60px" width="60px"> Olá, ${user.displayName} `;
   } else {
     // No user is signed in.
   }
 });
 
-export const criarBanco = (post) => firebase.firestore().collection('posts').add(post).then(() => {
+export const criarBanco = (post) => firestore().add(post).then(() => {
 
 });
