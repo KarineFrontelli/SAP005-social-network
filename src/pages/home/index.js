@@ -57,7 +57,6 @@ export const Home = () => {
 
   function renderizarPosts() {
     getAllPosts().then((res) => {
-      console.log(res);
       const cardsOk = adicionaPostATela(res);
       feedArea.innerHTML = cardsOk;
       const btnEditar = feedArea.querySelectorAll('.btn-editar');
@@ -183,7 +182,7 @@ export const Home = () => {
       let cardPost = '';
       function nome(str) {
         var arr = str.split(' ');
-        if (arr[1].toLowerCase() == 'de' || arr[1].toLowerCase() == 'da' || arr[1].toLowerCase() == 'do' || arr[1].toLowerCase() == 'dos') {
+        if (arr[1] === 'de' || arr[1] === 'da' || arr[1] === 'do' || arr[1] === 'dos') {
           return arr[0] + " " + arr[1] + " " + arr[2]
         } else {
           return arr[0] + " " + arr[1]

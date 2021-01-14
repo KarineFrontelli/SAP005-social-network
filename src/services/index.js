@@ -3,7 +3,6 @@ const firestore = () => firebase.firestore().collection('posts');
 export const getAllPosts = () => firestore().orderBy('date', 'desc').get()
   .then((snapshot) => {
     const posts = snapshot.docs;
-    console.log(posts);
     return posts;
   });
 
