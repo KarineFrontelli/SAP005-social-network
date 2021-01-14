@@ -18,7 +18,6 @@ export const Cadastro = () => {
         <div>
           <input class="input-login" type="password" id="inputSenha"  placeholder="Senha: mínimo 6 caracteres"/>
         </div>
-          
           <button class="link criar-Conta" id="criarConta"> Criar Conta </button>
 
      
