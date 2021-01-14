@@ -98,7 +98,7 @@ header {
 }
 
 .name-user {
-  color: #1c1c1c;
+  color: #FAE62E;
   font-size: 1.5em;
   margin-top: 2em;
 }
@@ -111,22 +111,19 @@ header {
 
 .btn-Logout {
   padding: 0.5em;
-  border-radius: 100em;
-  height: 3em;
+  border-radius: 7px;
+  width:26vw;
   cursor: pointer;
-}
-
-.logtout{
   border: none;
   outline: none;
-  background-color: transparent;
+  background-color: #FAE62E;
 }
 
 .post__button{
-  background-color: #1C1C1C;
+  background-color: #FAE62E;
   width: 26vw;
   height:2em;
-  color:#FBF395 ;
+  color:#1C1C1C ;
   margin-top: 0.6em;
   border-radius: 7px;
   border:none;
@@ -347,13 +344,15 @@ box-shadow: none;
   
   .btn-Logout {
     padding: 0.5em;
-    border-radius: 100em;
-    width: 75px;
-    height: 75px;
+    border-radius: 7px;
+    width:12vw;
+    height: 2.4em;
+    font-size:1em;
+    background-color: #FAE62E;
   }
 
   .name-user {
-    color: #1c1c1c;
+    color: #FAE62E;
     font-size: 2.5em;
     margin-top: 2em;
   }
@@ -365,15 +364,15 @@ box-shadow: none;
   }
 
   .post__button{
-    background-color: #1C1C1C;
-    width: 16vw;
-    height:2.8em;
-    color:#FBF395 ;
+    background-color: #FAE62E;
+    width: 14vw;
+    height:2.4em;
+    color:#1C1C1C ;
     margin-top: 0.6em;
     border-radius: 7px;
     border:none;
     font-size:1.3em;
-    margin-left:26em ;
+    margin-left:24em ;
 
   }
 
@@ -386,8 +385,8 @@ box-shadow: none;
   
   }
   .post__textarea {
-    width:75vw;
-    height: 12em;
+    width:65vw;
+    height: 8em;
     padding: 1em;
     border-radius: 10px;
     border: 2px solid #1c1c1c;
@@ -398,8 +397,8 @@ box-shadow: none;
 
   .card-post {
     border: #000000 1px solid;
-    width: 75vw;
-    height: 38vh;
+    width: 65vw;
+    height: 8em;
     margin-bottom: 0.5em;
     border-radius: 10px;
     padding: 1em;
@@ -410,9 +409,8 @@ box-shadow: none;
   .btn-editar {
     height: 6vh;
     width: 12vw;
-    margin-left: 4em;
     font-size:0.7em;
-    margin-left: 17em;
+    margin-left: 4em;
   }
   
   .btn-excluir {

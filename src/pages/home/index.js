@@ -11,9 +11,7 @@ export const Home = () => {
   const pageHome = `
       <header>
         <h1 class="name-user" id="userName"></h1>
-        <button id="btnLogout" class="logtout">
-        <img class='btn-Logout' src="img/exit.png" alt="Logout icon">
-        </button>
+        <button id="btnLogout" class="btn-Logout">Sair</button>
       </header>
       <main class="main-home">
         <section>
