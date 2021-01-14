@@ -37,13 +37,9 @@ export const Conta = (email, senha, userName) => {
     userReturn.user.updateProfile({
       displayName: userName,
     }).then(() => {
-      // Update successful.
     }, (error) => {
-      // An error happened.
       alert('An error happened.', error);
     });
-    // console.log('usuario', userReturn);
-    // alert('usuario criado e logado');
   });
 };
 
@@ -55,8 +51,6 @@ export const nomeUsuario = () => firebase.auth().onAuthStateChanged((user) => {
     const nome = user.displayName;
     const primeiroNome = nome.split(' ')[0];
     document.querySelector('#userName').innerHTML = `<img class="photo-profile" src="${user.photoURL}"> Olá, ${primeiroNome} `;
-  } else {
-    // No user is signed in.
   }
 });
 

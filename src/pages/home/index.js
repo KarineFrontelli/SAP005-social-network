@@ -28,9 +28,8 @@ export const Home = () => {
     `;
 
   const rootElement = document.createElement('div');
-  rootElement.classList.add('root-div')
+  rootElement.classList.add('root-div');
   rootElement.innerHTML = pageHome;
-
 
   nomeUsuario();
 
@@ -41,11 +40,11 @@ export const Home = () => {
   const btnNovoPost = rootElement.querySelector('.novo-post');
 
   btnNovoPost.addEventListener('click', () => {
-    formEl.style.display = "flex";
-    titulo.style.display = "none";
-    btnNovoPost.style.display = "none";
+    formEl.style.display = 'flex';
+    titulo.style.display = 'none';
+    btnNovoPost.style.display = 'none';
     document.documentElement.scrollTop = 0;
-  })
+  });
 
   const createPost = createPostMaker({
     database: firebase,
@@ -91,7 +90,7 @@ export const Home = () => {
             areaEditar.style.display = 'none';
           })
           .catch(() => {
-            alert('Deu ruim aí');
+            alert('Algo deu errado. Tente novamente!');
           });
       };
 
@@ -112,7 +111,7 @@ export const Home = () => {
               cadaPost.style.display = 'none';
             })
             .catch(() => {
-              alert('Deu ruim aí');
+              alert('Algo deu errado. Tente novamente!');
             });
         }
       };
@@ -128,6 +127,8 @@ export const Home = () => {
         const cadaPost = e.target.parentNode.parentNode;
         const idPost = cadaPost.id;
         const btnLiked = cadaPost.querySelector('.btnLike');
+        const mostraLike = cadaPost.querySelector('.mostra-like');
+        const numeroLike = Number(mostraLike.innerText);
 
         let postJafoiCurtidoAlgumaVez = false;
 
@@ -142,13 +143,12 @@ export const Home = () => {
 
         usuarioLogadoJaCurtiuEssePost.get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-
             if (postJafoiCurtidoAlgumaVez === false) {
               if (doc.data().usuarioQueCurtiu === usuarioLogado) {
                 postJafoiCurtidoAlgumaVez = true;
-                alert('post já foi curtido por você!');
+                alert('Você já curtiu esse post!');
                 btnLiked.classList.add('btn-liked');
-                btnLiked.innerHTML = "Curtiu!"
+                btnLiked.innerHTML = 'Curtiu!';
               }
             }
           });
@@ -159,13 +159,13 @@ export const Home = () => {
                 firebase.firestore().collection('posts').doc(idPost).collection('TB_QUEM_CURTIU')
                   .add(usuarioQueCurtiu)
                   .then(() => {
-                    alert('Curtida contabilizada com sucesso!');
                     btnLiked.classList.add('btn-liked');
-                    btnLiked.innerHTML = "Curtiu!"
+                    btnLiked.innerHTML = 'Curtiu!';
+                    mostraLike.innerText = numeroLike + 1;
                   });
               })
               .catch(() => {
-                alert('Deu ruim aí');
+                alert('Algo deu errado. Tente novamente!');
               });
           }
         });
@@ -181,19 +181,14 @@ export const Home = () => {
       const idPost = doc.id;
       let cardPost = '';
       function nome(str) {
-        var arr = str.split(' ');
+        const arr = str.split(' ');
         if (arr[1] === 'de' || arr[1] === 'da' || arr[1] === 'do' || arr[1] === 'dos') {
-          return arr[0] + " " + arr[1] + " " + arr[2]
-        } else if (arr[1] === '') {
-          return arr[1].replace('undefined', '')
-        } else {
-          return arr[0] + " " + arr[1]
+          return `${arr[0]} ${arr[1]} ${arr[2]}`;
+        } if (arr[1] === '') {
+          return arr[1].replace('undefined', '');
         }
-
-        
+        return `${arr[0]} ${arr[1]}`;
       }
-      // const nome = informacao.name;
-      // const primeiroNome = nome.split(' ')[0] + " " + nome.split(' ')[1];
       if (informacao.uid === firebase.auth().currentUser.uid) {
         cardPost = `
             <div class="card-post" id="${idPost}">
