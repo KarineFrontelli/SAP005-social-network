@@ -11,7 +11,9 @@ export const Home = () => {
   const pageHome = `
       <header>
         <h1 class="name-user" id="userName"></h1>
-        <button class="btn-Logout" id="btnLogout">Sair</button>
+        <button id="btnLogout" class="logtout">
+        <img class='btn-Logout' src="img/exit.png" alt="Logout icon">
+        </button>
       </header>
       <main class="main-home">
         <section>
@@ -172,7 +174,10 @@ export const Home = () => {
               
               <h2 class="nome-usuario">${informacao.name}</h2>
               <button class="btn-editar" id="btnEditar">Editar</button>
-              <button  class="btn-excluir" id="btnExcluirPost">X</button>
+              <button  class="btn-excluir" id="btnExcluirPost">
+              <img class='btn-excluir' src="img/delete.svg" alt="Delete icon">
+              </button>
+              
       
               <p class="texto-post" id="post">${informacao.post}</p>
               <div class="area-editar">

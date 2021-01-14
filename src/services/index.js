@@ -53,7 +53,7 @@ export const Email = (email, senha) => firebase.auth().signInWithEmailAndPasswor
 
 export const nomeUsuario = () => firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    document.querySelector('#userName').innerHTML = `<img src="${user.photoURL}" height="60px" width="60px"> Olá, ${user.displayName} `;
+    document.querySelector('#userName').innerHTML = `<img class="photo-profile" src="${user.photoURL}"> Olá, ${user.displayName} `;
   } else {
     // No user is signed in.
   }
