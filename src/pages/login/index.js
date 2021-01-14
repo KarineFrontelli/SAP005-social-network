@@ -1,11 +1,8 @@
-// import { } from './data.js';
 import { Google, Facebook, Email } from '../../services/index.js';
-// import { renderPage } from '../../router.js';
 
 import { renderPage } from '../../router.js';
 
 export const Login = () => {
-  // Coloque sua página
   const btnGoogle = `
     <section class="login">
       <div class="logo">
@@ -42,15 +39,9 @@ export const Login = () => {
   loginGoogle.addEventListener('click', (event) => {
     event.preventDefault();
     Google().then(() => {
-      // const token = result.credential.accessToken;
-      // const user = result.user;
       window.history.pushState(null, null, '/home');
       renderPage();
     }).catch(() => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // const email = error.email;
-      // const credential = error.credential;
     });
   });
 
@@ -59,15 +50,9 @@ export const Login = () => {
   loginFacebook.addEventListener('click', (event) => {
     event.preventDefault();
     Facebook().then(() => {
-      // const token = result.credential.accessToken;
-      // const user = result.user;
       window.history.pushState(null, null, '/home');
       renderPage();
     }).catch(() => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // const email = error.email;
-      // const credential = error.credential;
     });
   });
 
@@ -78,15 +63,9 @@ export const Login = () => {
     const email = document.getElementById('inputEmail').value;
     const senha = document.getElementById('inputSenha').value;
     Email(email, senha).then(() => {
-      // const token = result.credential.accessToken;
-      // const user = result.user;
       window.history.pushState(null, null, '/home');
       renderPage();
     }).catch(() => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // const email = error.email;
-      // const credential = error.credential;
     });
   });
 
