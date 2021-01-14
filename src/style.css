@@ -5,12 +5,8 @@
 }
 
 body {
-
   background-color: #1c1c1c;
-
 }
-
-
 
 .login,
 .cadastro {
@@ -23,9 +19,11 @@ body {
 }
 
 .img-logo {
-  width: 13em;
+  width: 12em;
+  margin-top: -1em;
 }
 
+.login-opcoes,
 .order-login {
   display: flex;
   flex-direction: column;
@@ -35,11 +33,12 @@ body {
 .input-login {
   width: 85vw ;
   background-color: transparent;
-  opacity: 0.60; 
+  opacity: 0.80; 
   border-radius: 7px;
-  border: 2px solid #FBF395;
+  border: 2px solid #FAE62E;
   padding: 0.8em;
   margin-top: 0.6em;
+  color: #FAE62E;
 }
 
 .btn-Login,
@@ -74,6 +73,7 @@ body {
   border-radius: 7px;
   border: none;
   font-size: 1em;
+  cursor: pointer;
 }
 
 .criar-Cadastro {
@@ -86,9 +86,15 @@ body {
   position: relative;
   text-decoration: underline;
   margin-top: 2em;
-} 
+}
 
-header {
+.root-div,
+  .home {
+    margin: 0 auto;
+  }
+
+
+.header {
   width: 90vw;
   margin: 5vw;
   display: flex;
@@ -110,13 +116,16 @@ header {
 }
 
 .btn-Logout {
-  padding: 0.5em;
-  border-radius: 7px;
-  width:26vw;
-  cursor: pointer;
-  border: none;
-  outline: none;
   background-color: #FAE62E;
+  width: 26vw;
+  height:2em;
+  color:#1C1C1C ;
+  margin-top: 0.6em;
+  border-radius: 7px;
+  border:none;
+  font-size:1em;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #2e2d2d;
 }
 
 .post__button{
@@ -133,21 +142,22 @@ header {
 }
 
 .post__button:active{
-position:relative;
-top: 5px;
-box-shadow: none;
+  position:relative;
+  top: 5px;
+  box-shadow: none;
 }
 
 .post-enviar {
-  width: 90vw;
-  margin: 5vw;
+  width:90vw;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 .post__textarea {
-  width:90vw;
+  margin: 0 auto;
+  width: 100%;
   height: 10em;
   padding: 1em;
   border-radius: 10px;
@@ -164,7 +174,6 @@ box-shadow: none;
   margin-top: 1em;
 }
 
-
 .card-post {
   border: #000000 1px solid;
   width: 90vw;
@@ -172,29 +181,24 @@ box-shadow: none;
   border-radius: 10px;
   padding: 1em;
   background-color: #ffffad;
-  
 }
 
 .nome-usuario {
-  font-size: 1em;
-  display: inline;
-  flex-wrap: wrap
+  font-size: 1.2em;
 } 
 
 .texto-post {
   color: #333333;
   margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
-
-
 
 .info-post { 
  display: flex;
  justify-content: space-between;
  border-bottom: 2px solid #1c1c1c; 
  align-items:center; 
- padding-bottom: 0.3em;
-
+ padding-bottom: 0.5em;
 }
 
 .btn-editar {
@@ -258,16 +262,48 @@ box-shadow: none;
   margin-top: 0.5em;
 }
 
-.area-editar,
-.uid-escondido,
-.id-escondido {
+.area-editar {
   display: none;
+  border-top: 1px solid #1c1c1c;
+  padding-top: 0.5em;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.area-editar-block {
-  display: block;
+.editar-post {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 10px;
+  border: 1px solid #1c1c1c;
+  background-color: #ffffad;
+  margin-bottom: 0.5em;
 }
 
+.btn-salvar-editado {
+  background: #1C1C1C;
+  border-radius: 7px;
+  color: #FBF395;
+  height: 5vh;
+  width: 16vw;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #2e2d2d;
+}
+
+footer {
+  width: 100vw;
+  color:  #FBF395;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px #FBF395 solid;
+  padding: 0.5em;
+  text-align: center;
+}
+
+footer a {
+  cursor: pointer;
+  color: #FBF395;
+}
 
   @media (min-width:1000px)  {
   .logo {
@@ -281,111 +317,75 @@ box-shadow: none;
 
   .login,
   .cadastro {
-    background-color:#1c1c1c;
-    height:100vh;
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex; 
-    flex-direction: start;
     align-items: normal;
     justify-content: center;
   }
 
   .input-login {
-    width: 35vw ; 
-    height: 4.5vw;
-    color: #FBF395;
-   
-    
+    width: 35vw; 
+    font-size: 1em;
   } 
 
-  .order-login {
+  .login-opcoes {
     margin-left: 30%;
-    
+    font-size: 1.2em;
   }
 
   .outros-logins{
     display: flex;
     width: 36vw;
-    justify-content: space-between; 
-    margin-left: 47%;
-    
+    justify-content: space-evenly;     
   }
 
   .btn-Login,
-  .criar-Conta {
-    background-color: #FAE62E;
-    width: 15vw;
-    height: 2.6em;
-    margin-top: 0.6em;
-    border-radius: 7px;
-    border: none;
-    font-size: 1em;
-  }
-
+  .criar-Conta,
   .btn-Facebook, 
   .btn-Google {
     width: 15vw;
-    height: 2.6em;
-    background-color: #FBF395;
-    margin-top: 0.6em;
-    border-radius: 7px;
-    border: none;
+  } 
+
+  .criar-Cadastro {
     font-size: 1em;
+  }
 
-  } 
-  .criar-conta {
-    color: #FBF395;
-    cursor: pointer;
-    text-decoration: underline;
-    margin-top: 2em;
-    margin-left: 56%;
+  .root-div,
+  .home {
+    max-width: 700px;
+  }
 
-  } 
-
-  
-  .btn-Logout {
-    padding: 0.5em;
-    border-radius: 7px;
-    width:12vw;
-    height: 2.4em;
-    font-size:1em;
-    background-color: #FAE62E;
+  .header {
+    width: 100%;
+    padding-top: 5em;
+    margin: 0;
   }
 
   .name-user {
-    color: #FAE62E;
     font-size: 2.5em;
-    margin-top: 2em;
   }
   
   .photo-profile {
-    border-radius: 30em;
     height:125px;
     width:125px;
   }
-
-  .post__button{
-    background-color: #FAE62E;
-    width: 14vw;
-    height:2.4em;
-    color:#1C1C1C ;
-    margin-top: 0.6em;
-    border-radius: 7px;
-    border:none;
-    font-size:1.3em;
-    margin-left:24em ;
-
-  }
-
+  
   .post-enviar {
-    width: 90vw;
-    margin: 5vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-  
+    align-items: flex-end;
   }
+
+  .btn-Logout,
+  .post__button{
+    width: 14vw;
+    height:2.4em;
+    font-size:1.3em;
+  }
+
   .post__textarea {
-    width:65vw;
     height: 8em;
     padding: 1em;
     border-radius: 10px;
@@ -394,41 +394,29 @@ box-shadow: none;
     font-size:1.8em;
   }
 
+  .posts-enviados {
+    width: 100%;
+  }
 
   .card-post {
-    border: #000000 1px solid;
-    width: 65vw;
-    height: 8em;
+    width: 100%;
     margin-bottom: 0.5em;
-    border-radius: 10px;
-    padding: 1em;
-    margin-top: 2em;
-    font-size:1.8em;
+    margin-top: 1em;
+    font-size:1.5em;
   }
 
   .btn-editar {
     height: 6vh;
-    width: 12vw;
+    width: 10vw;
     font-size:0.7em;
     margin-left: 4em;
-  }
-  
-  .btn-excluir {
-    background: transparent;
-    color: #1c1c1c;
-    border: none;
   }
 
   .btnLike {
     margin-top: 2em; 
-    background: #1C1C1C;
-    border-radius: 7px;
-    color: #FBF395;
     height: 6vh;
-    width: 16vw;
-    border: none;
+    width: 10vw;
     font-size:0.7em;
-    
   }
   
   .mostra-like {
@@ -436,4 +424,25 @@ box-shadow: none;
     margin-top: 0.5em;
   }
 
+  .area-editar {
+    border-top: 2px solid #1c1c1c;
+    padding-top: 0.5em;
+  }
+  
+  .editar-post {
+    border: 2px solid #1c1c1c;
+    font-size: 1em;
+  }
+  
+  .btn-salvar-editado {
+    height: 6vh;
+    width: 10vw;
+    font-size:0.7em;
+  }
+
+  footer {
+    margin-left: -13.5%;
+    font-size: 1.4em;
+  }
+  
 }

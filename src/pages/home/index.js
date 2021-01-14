@@ -9,7 +9,8 @@ import { createPostMaker, postTemplate } from '../../components/post.js';
 
 export const Home = () => {
   const pageHome = `
-      <header>
+    <section class="home">
+      <header class="header">
         <h1 class="name-user" id="userName"></h1>
         <button id="btnLogout" class="btn-Logout">Sair</button>
       </header>
@@ -20,9 +21,11 @@ export const Home = () => {
         <section class="posts-enviados" id="feedArea">
         </section>
       </main>
+    </section>
     `;
 
   const rootElement = document.createElement('div');
+  rootElement.classList.add('root-div')
   rootElement.innerHTML = pageHome;
 
   nomeUsuario();
@@ -58,7 +61,7 @@ export const Home = () => {
       });
 
       const mostrarAreaEditar = (e) => {
-        const cadaPost = e.target.parentNode;
+        const cadaPost = e.target.parentNode.parentNode.parentNode;
         const areaEditar = cadaPost.querySelector('.area-editar');
         areaEditar.style.display = 'block';
 
@@ -94,7 +97,7 @@ export const Home = () => {
       });
 
       const excluirPost = (e) => {
-        const cadaPost = e.target.parentNode;
+        const cadaPost = e.target.parentNode.parentNode.parentNode;
         console.log(cadaPost);
         const idPost = cadaPost.id;
         if (confirm('Tem certeza que deseja excluir esse post?')) {
@@ -164,20 +167,25 @@ export const Home = () => {
       const informacao = doc.data();
       const idPost = doc.id;
       let cardPost = '';
+      const nome = informacao.name;
+      const primeiroNome = nome.split(' ')[0] + " " + nome.split(' ')[1];
       if (informacao.uid === firebase.auth().currentUser.uid) {
         cardPost = `
             <div class="card-post" id="${idPost}">
-              
-              <h2 class="nome-usuario">${informacao.name}</h2>
-              <button class="btn-editar" id="btnEditar">Editar</button>
-              <button  class="btn-excluir" id="btnExcluirPost">
-              <img class='btn-excluir' src="img/delete.svg" alt="Delete icon">
-              </button>
+              <div class="info-post">
+                <h2 class="nome-usuario">${primeiroNome}</h2>
+                <div class="btn-edit-exc">
+                  <button class="btn-editar" id="btnEditar">Editar</button>
+                  <button  class="btn-excluir" id="btnExcluirPost">
+                  <img class='btn-excluir' src="img/delete.svg" alt="Delete icon">
+                  </button>
+                </div>
+              </div>
       
               <p class="texto-post" id="post">${informacao.post}</p>
               <div class="area-editar">
                 <textarea class="editar-post" id="textareaEditarPost">${informacao.post}</textarea>
-                <button class="btn-salvar-editado" id="btnSalvarEdicao">salvar</button>
+                <button class="btn-salvar-editado" id="btnSalvarEdicao">Salvar</button>
               </div>
               <p class="mostra-like">${informacao.likes}</p>
             </div>
@@ -185,7 +193,7 @@ export const Home = () => {
       } else {
         cardPost = `
             <div class="card-post" id=${idPost}>
-              <h2 class="nome-usuario">${informacao.name}</h2>
+              <h2 class="nome-usuario">${primeiroNome}</h2>
               <p class="texto-post" id="post">${informacao.post}</p>
               <div>
                 <button class="btnLike" id="btnLike">Curtir</button>
