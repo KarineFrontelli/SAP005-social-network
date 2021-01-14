@@ -41,7 +41,7 @@ export const createPostMaker = ({
         likes,
       })
       .then(() => {
-        renderPage();
+          renderPage();
       });
 
     const initialize = () => {
