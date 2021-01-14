@@ -8,7 +8,9 @@ export const Login = () => {
   // Coloque sua página
   const btnGoogle = `
     <section class="login">
-      <img class="img-logo"  src="../img/Logo.jpeg" alt="logo da  página">
+      <div class="logo">
+        <img class="img-logo"  src="../img/Logo.jpeg" alt="logo da  página">
+      </div>
       <form class="order-login">
         <div>
           <input class="input-login" type="email" id="inputEmail" placeholder="Email"/>
@@ -23,7 +25,9 @@ export const Login = () => {
         <button id="btnGoogle" class="btn-Google">Google</button>
         <button id="btnFacebook" class="btn-Facebook" >Facebook</button>
       </div>
-      <button class= "link criar-Cadastro" id="criarCadastro">Não é membro? Criar conta</button>
+      <div class="criar-conta"
+        <button class= "link criar-Cadastro" id="criarCadastro">Não é membro? Criar conta</button>
+      </div>
     </section>
   `;
 
