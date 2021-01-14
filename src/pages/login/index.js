@@ -31,7 +31,7 @@ export const Login = () => {
         </div>
       </div>
     </section>
-    <footer>Developed by @<a href="https://github.com/biacostadev">Bia</a>, @<a href="https://github.com/julianaads">Juliana</a> e @<a href="https://github.com/KarineFrontelli">Karine</a></footer>
+    <footer>Developed by @<a href="https://github.com/biacostadev" target="_blank">Bia</a>, @<a href="https://github.com/julianaads" target="_blank">Juliana</a> e @<a href="https://github.com/KarineFrontelli" target="_blank">Karine</a></footer>
   `;
 
   const rootElement = document.createElement('div');
