@@ -184,9 +184,13 @@ export const Home = () => {
         var arr = str.split(' ');
         if (arr[1] === 'de' || arr[1] === 'da' || arr[1] === 'do' || arr[1] === 'dos') {
           return arr[0] + " " + arr[1] + " " + arr[2]
+        } else if (arr[1] === '') {
+          return arr[1].replace('undefined', '')
         } else {
           return arr[0] + " " + arr[1]
         }
+
+        
       }
       // const nome = informacao.name;
       // const primeiroNome = nome.split(' ')[0] + " " + nome.split(' ')[1];
@@ -194,7 +198,7 @@ export const Home = () => {
         cardPost = `
             <div class="card-post" id="${idPost}">
               <div class="info-post">
-                <h2 class="nome-usuario">${nome(informacao.name)}</h2>
+                <h2 class="nome-usuario">${nome(informacao.name).replace('undefined', '')}</h2>
                 <div class="btn-edit-exc">
                   <button class="btn-editar" id="btnEditar">Editar</button>
                   <button  class="btn-excluir" id="btnExcluirPost">
@@ -214,7 +218,7 @@ export const Home = () => {
       } else {
         cardPost = `
             <div class="card-post" id=${idPost}>
-              <h2 class="nome-usuario">${nome(informacao.name)}</h2>
+              <h2 class="nome-usuario">${nome(informacao.name).replace('undefined', '')}</h2>
               <p class="texto-post" id="post">${informacao.post}</p>
               <div>
                 <button class="btnLike" id="btnLike">Curtir</button>
