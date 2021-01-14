@@ -14,7 +14,7 @@ export const Cadastro = () => {
       <div class="login-opcoes">
 
         <div>
-          <input class="input-login" "type="text" id="inputName" placeholder="Nome *"/>
+          <input class="input-login" "type="text" id="inputName" placeholder="Nome e Sobrenome *"/>
         </div>
         <div>
           <input class="input-login" type="email" id="inputEmail" placeholder="Email * (ex: email@email.com.br)"/>

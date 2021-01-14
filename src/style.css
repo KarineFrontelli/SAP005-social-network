@@ -279,6 +279,13 @@ body {
   box-shadow: none;
 }
 
+.btn-liked{
+  background-color: #F05628;
+  color: #1c1c1c;
+  box-shadow: 0 4px 0 #d14f28;
+
+}
+
 .mostra-like {
   display: inline;
   margin-top: 0.5em;

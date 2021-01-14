@@ -17,7 +17,7 @@ export const Home = () => {
       </header>
       <main class="main-home">
         <section>
-        <h2 class="h2">Veja o que outras pessoas andam postando:</h2>
+        <h2 class="h2">Veja quais cervejas as pessoas andam bebendo:</h2>
         <button class="novo-post">Novo Post</button>
           ${postTemplate}
         </section>
@@ -128,6 +128,7 @@ export const Home = () => {
       const contarLike = (e) => {
         const cadaPost = e.target.parentNode.parentNode;
         const idPost = cadaPost.id;
+        const btnLiked = cadaPost.querySelector('.btnLike');
 
         let postJafoiCurtidoAlgumaVez = false;
 
@@ -142,10 +143,13 @@ export const Home = () => {
 
         usuarioLogadoJaCurtiuEssePost.get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
+
             if (postJafoiCurtidoAlgumaVez === false) {
               if (doc.data().usuarioQueCurtiu === usuarioLogado) {
                 postJafoiCurtidoAlgumaVez = true;
                 alert('post já foi curtido por você!');
+                btnLiked.classList.add('btn-liked');
+                btnLiked.innerHTML = "Curtiu!"
               }
             }
           });
@@ -155,7 +159,11 @@ export const Home = () => {
               .then(() => {
                 firebase.firestore().collection('posts').doc(idPost).collection('TB_QUEM_CURTIU')
                   .add(usuarioQueCurtiu)
-                  .then(() => {alert('Curtida contabilizada com sucesso!');});
+                  .then(() => {
+                    alert('Curtida contabilizada com sucesso!');
+                    btnLiked.classList.add('btn-liked');
+                    btnLiked.innerHTML = "Curtiu!"
+                  });
               })
               .catch(() => {
                 alert('Deu ruim aí');
