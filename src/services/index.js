@@ -64,3 +64,9 @@ export const nomeUsuario = () => firebase.auth().onAuthStateChanged((user) => {
 export const criarBanco = (post) => firestore().add(post).then(() => {
 
 });
+
+export const logout = () => {
+  firebase.auth().signOut().then(() => {
+    window.location = '/';
+  });
+}

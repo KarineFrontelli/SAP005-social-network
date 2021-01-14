@@ -4,6 +4,7 @@ import {
   excluirPostBanco,
   likeFirebase,
   getAllPosts,
+  logout,
 } from '../../services/index.js';
 import { createPostMaker, postTemplate } from '../../components/post.js';
 
@@ -16,6 +17,8 @@ export const Home = () => {
       </header>
       <main class="main-home">
         <section>
+        <h2 class="h2">Veja o que outras pessoas andam postando:</h2>
+        <button class="novo-post">Novo Post</button>
           ${postTemplate}
         </section>
         <section class="posts-enviados" id="feedArea">
@@ -28,11 +31,21 @@ export const Home = () => {
   rootElement.classList.add('root-div')
   rootElement.innerHTML = pageHome;
 
+
   nomeUsuario();
 
   const formEl = rootElement.querySelector('[data-js-post]');
   const feedArea = rootElement.querySelector('#feedArea');
   const btnLogout = rootElement.querySelector('#btnLogout');
+  const titulo = rootElement.querySelector('.h2');
+  const btnNovoPost = rootElement.querySelector('.novo-post');
+
+  btnNovoPost.addEventListener('click', () => {
+    formEl.style.display = "flex";
+    titulo.style.display = "none";
+    btnNovoPost.style.display = "none";
+    document.documentElement.scrollTop = 0;
+  })
 
   const createPost = createPostMaker({
     database: firebase,
@@ -41,12 +54,6 @@ export const Home = () => {
   const loadEvents = () => {
     btnLogout.addEventListener('click', logout);
   };
-
-  function logout() {
-    firebase.auth().signOut().then(() => {
-      window.location = '/';
-    });
-  }
 
   function renderizarPosts() {
     getAllPosts().then((res) => {
@@ -97,7 +104,7 @@ export const Home = () => {
       });
 
       const excluirPost = (e) => {
-        const cadaPost = e.target.parentNode.parentNode.parentNode;
+        const cadaPost = e.target.parentNode.parentNode.parentNode.parentNode;
         console.log(cadaPost);
         const idPost = cadaPost.id;
         if (confirm('Tem certeza que deseja excluir esse post?')) {
@@ -148,7 +155,7 @@ export const Home = () => {
               .then(() => {
                 firebase.firestore().collection('posts').doc(idPost).collection('TB_QUEM_CURTIU')
                   .add(usuarioQueCurtiu)
-                  .then(() => { });
+                  .then(() => {alert('Curtida contabilizada com sucesso!');});
               })
               .catch(() => {
                 alert('Deu ruim aí');
@@ -162,18 +169,25 @@ export const Home = () => {
 
   function adicionaPostATela(data) {
     let cards = '';
-
     data.forEach((doc) => {
       const informacao = doc.data();
       const idPost = doc.id;
       let cardPost = '';
-      const nome = informacao.name;
-      const primeiroNome = nome.split(' ')[0] + " " + nome.split(' ')[1];
+      function nome(str) {
+        var arr = str.split(' ');
+        if (arr[1].toLowerCase() == 'de' || arr[1].toLowerCase() == 'da' || arr[1].toLowerCase() == 'do' || arr[1].toLowerCase() == 'dos') {
+          return arr[0] + " " + arr[1] + " " + arr[2]
+        } else {
+          return arr[0] + " " + arr[1]
+        }
+      }
+      // const nome = informacao.name;
+      // const primeiroNome = nome.split(' ')[0] + " " + nome.split(' ')[1];
       if (informacao.uid === firebase.auth().currentUser.uid) {
         cardPost = `
             <div class="card-post" id="${idPost}">
               <div class="info-post">
-                <h2 class="nome-usuario">${primeiroNome}</h2>
+                <h2 class="nome-usuario">${nome(informacao.name)}</h2>
                 <div class="btn-edit-exc">
                   <button class="btn-editar" id="btnEditar">Editar</button>
                   <button  class="btn-excluir" id="btnExcluirPost">
@@ -193,7 +207,7 @@ export const Home = () => {
       } else {
         cardPost = `
             <div class="card-post" id=${idPost}>
-              <h2 class="nome-usuario">${primeiroNome}</h2>
+              <h2 class="nome-usuario">${nome(informacao.name)}</h2>
               <p class="texto-post" id="post">${informacao.post}</p>
               <div>
                 <button class="btnLike" id="btnLike">Curtir</button>
@@ -214,6 +228,7 @@ export const Home = () => {
       formEl,
     });
     renderizarPosts();
+    logout;
   };
 
   initialize();
