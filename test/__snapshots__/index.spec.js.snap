@@ -9,11 +9,19 @@ exports[`Render página de login carrega a página 1`] = `
   >
     
       
-    <img
-      alt="logo da  página"
-      class="img-logo"
-      src="../img/Logo.jpeg"
-    />
+    <div
+      class="logo"
+    >
+      
+        
+      <img
+        alt="logo da  página"
+        class="img-logo"
+        src="../img/Logo.jpeg"
+      />
+      
+      
+    </div>
     
       
     <form
@@ -91,12 +99,14 @@ exports[`Render página de login carrega a página 1`] = `
     </div>
     
       
-    <button
-      class="link criar-Cadastro"
+    <div
+      <button=""
+      class="criar-conta"
       id="criarCadastro"
     >
       Não é membro? Criar conta
-    </button>
+      
+    </div>
     
     
   </section>
