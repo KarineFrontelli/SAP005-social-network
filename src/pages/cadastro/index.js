@@ -24,9 +24,9 @@ export const Cadastro = () => {
         </div>
           <button class="link criar-Conta" id="criarConta"> Criar Conta </button>
       </div>
-      <footer>Developed by @<a href="https://github.com/biacostadev">Bia</a>, @<a href="https://github.com/julianaads">Juliana</a> e @<a href="https://github.com/KarineFrontelli">Karine</a></footer>
       </form>
     </section>
+    <footer>Developed by @<a href="https://github.com/biacostadev">Bia</a>, @<a href="https://github.com/julianaads">Juliana</a> e @<a href="https://github.com/KarineFrontelli">Karine</a></footer>
   `;
 
   const rootElement = document.createElement('div');
