@@ -8,19 +8,23 @@ export const Cadastro = () => {
     
 
       <form class="cadastro">
-      <img class="img-logo"  src="../img/Logo.jpeg" alt="logo da  página">
+      <div class="logo">
+        <img class="img-logo"  src="../img/Logo.jpeg" alt="logo da  página">
+      </div>
+      <div class="login-opcoes">
+
         <div>
-          <input class="input-login" "type="text" id="inputName" placeholder="Nome"/>
+          <input class="input-login" "type="text" id="inputName" placeholder="Nome *"/>
         </div>
         <div>
-          <input class="input-login" type="email" id="inputEmail" placeholder="Email ex:email@email.com.br"/>
+          <input class="input-login" type="email" id="inputEmail" placeholder="Email * (ex: email@email.com.br)"/>
         </div>
         <div>
-          <input class="input-login" type="password" id="inputSenha"  placeholder="Senha: mínimo 6 caracteres"/>
+          <input class="input-login" type="password" id="inputSenha"  placeholder="Senha * (mínimo 6 caracteres)"/>
         </div>
           <button class="link criar-Conta" id="criarConta"> Criar Conta </button>
-
-     
+      </div>
+      <footer>Developed by @<a href="https://github.com/biacostadev">Bia</a>, @<a href="https://github.com/julianaads">Juliana</a> e @<a href="https://github.com/KarineFrontelli">Karine</a></footer>
       </form>
     </section>
   `;

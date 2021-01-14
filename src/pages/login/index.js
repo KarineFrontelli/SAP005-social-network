@@ -11,23 +11,26 @@ export const Login = () => {
       <div class="logo">
         <img class="img-logo"  src="../img/Logo.jpeg" alt="logo da  página">
       </div>
-      <form class="order-login">
-        <div>
-          <input class="input-login" type="email" id="inputEmail" placeholder="Email"/>
+      <div class="login-opcoes">
+        <form class="order-login">
+          <div>
+            <input class="input-login" type="email" id="inputEmail" placeholder="Email *"/>
+          </div>
+          <div>
+            <input class="input-login" type="password" id="inputSenha"  placeholder="Senha *"/>
+          </div>
+            <button id="btnEmail" class="btn-Login">Login</button>
+            <p class="login-com"> Ou faça login com...</p>
+        </form>
+        <div class="outros-logins">
+          <button id="btnGoogle" class="btn-Google">Google</button>
+          <button id="btnFacebook" class="btn-Facebook" >Facebook</button>
         </div>
-        <div>
-          <input class="input-login" type="password" id="inputSenha"  placeholder="Senha"/>
+        <div class="criar-conta">
+          <button class="link criar-Cadastro" id="criarCadastro">Não é membro? Criar conta</button>
         </div>
-          <button id="btnEmail" class="btn-Login">Login</button>
-          <p class="login-com"> Ou faça login com...</p>
-      </form>
-      <div class="outros-logins">
-        <button id="btnGoogle" class="btn-Google">Google</button>
-        <button id="btnFacebook" class="btn-Facebook" >Facebook</button>
       </div>
-      <div class="criar-conta"
-        <button class= "link criar-Cadastro" id="criarCadastro">Não é membro? Criar conta</button>
-      </div>
+      <footer>Developed by @<a href="https://github.com/biacostadev">Bia</a>, @<a href="https://github.com/julianaads">Juliana</a> e @<a href="https://github.com/KarineFrontelli">Karine</a></footer>
     </section>
   `;
 
