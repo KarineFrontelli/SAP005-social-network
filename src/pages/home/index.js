@@ -234,7 +234,6 @@ export const Home = () => {
       formEl,
     });
     renderizarPosts();
-    logout;
   };
 
   initialize();
