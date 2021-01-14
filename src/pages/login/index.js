@@ -30,8 +30,8 @@ export const Login = () => {
           <button class="link criar-Cadastro" id="criarCadastro">Não é membro? Criar conta</button>
         </div>
       </div>
-      <footer>Developed by @<a href="https://github.com/biacostadev">Bia</a>, @<a href="https://github.com/julianaads">Juliana</a> e @<a href="https://github.com/KarineFrontelli">Karine</a></footer>
     </section>
+    <footer>Developed by @<a href="https://github.com/biacostadev">Bia</a>, @<a href="https://github.com/julianaads">Juliana</a> e @<a href="https://github.com/KarineFrontelli">Karine</a></footer>
   `;
 
   const rootElement = document.createElement('div');
