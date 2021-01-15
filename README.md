@@ -61,14 +61,14 @@ Para acessar a página [clique aqui](https://rede-social-51f01.web.app/).. 💻
 
 A partir do resultado da pesquisa criamos o protótipo da aplicação
 
-# Tela mobile
+ Tela mobile
 
 <p align="center">
-<img src="/src/img/prototipo-mobile.jpeg" width="350" heigth="350" >
+<img src="/src/img/prototipo-mobile.jpeg" width="350" heigth="400" >
 </p>
 
 
-# Tela Desktop
+ Tela Desktop
 
 <p align="center">
 <img src="/src/img/prototipo login desktop.PNG" width="350" heigth="350" >
