@@ -9,8 +9,8 @@ Para acessar a página [clique aqui](https://rede-social-51f01.web.app/).. 💻
 - [1. Introdução](#1-introdução)
 - [2. Apresentação](#2-apresentação)
 - [3. Planejamento e Desenvolvimento](#3-planejamento-e-desenvolvimento)
-- [4. Usuários](#4-usuarios)
-- [5. Protótipo](#5-prototipo)
+- [4. Usuários](#4-usuários)
+- [5. Protótipo](#5-protótipo)
 - [6. Conceito Final](#6-conceito-final)
 - [7. Estrutura](#7-estrutura)
 - [8. Autoria](#8-autoria)
@@ -144,7 +144,7 @@ A partir do resultado da pesquisa criamos o protótipo da aplicação
 </p> 
 
 
-## 7.Estrutura 
+## 7. Estrutura 
 
 A aplicação 4 telas sendo elas:
 
@@ -153,7 +153,7 @@ A aplicação 4 telas sendo elas:
 * Cadastro
 * Feed de postagens
 
-## 8.Autoria 
+## 8. Autoria 
 
 Este projeto foi desenvolvido por : [Ana Beatriz](https://github.com/biacostadev) ,[Juliana](https://github.com/julianaads) e [karine](https://github.com/KarineFrontelli)
 
