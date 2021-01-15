@@ -49,26 +49,47 @@ Para acessar a página [clique aqui](https://rede-social-51f01.web.app/).. 💻
 </p> 
  
 
-  
-  
-  
-  
-  
-  
-  
+## 4. Usuários
 
-## 4. Protótipo
+### Personas
+
+Após o resultado da pesquisa, identificamos e validamos três personas, que se caracterizam como consumidoras de cervejas e possíveis usuárias da Rede Social LaBeer. Abaixo as informações detalhadas
+ 
+ 
+ <p align="center">
+<img src="/src/img/historia1.png" width="350" heigth="350" >
+</p> 
+
+<p align="center">
+<img src="/src/img/historia2.png" width="350" heigth="350" >
+</p> 
+
+<p align="center">
+<img src="/src/img/historia3.png" width="350" heigth="350" >
+</p> 
+
+
+### Histórias de Usuários
+
+ * <p> História 1 </p>
+Karina precisa criar posts novos sobre as cervejas que anda bebendo porque acredita que pode influenciar mais mulheres a conhecerem o mercado cervejeiro.
+
+ * <p> História 2 </p>
+Ramon precisa dar like e comentar posts porque quer conhecer novas pessoas com o mesmo gosto que ele.
+
+ * <p> História 3 </p>
+Catia precisa editar e excluir os próprios posts porque quer aproveitar a aposentadoria para desenvolver um novo hobbie e pode mudar de opinião com o decorrer do tempo.
+
+
+## 5. Protótipo
 
 A partir do resultado da pesquisa criamos o protótipo da aplicação
 
- Tela mobile
 
 <p align="center">
-<img src="/src/img/prototipo-mobile.jpeg" width="350" heigth="400" >
+<img src="/src/img/prototipo-mobile.jpeg" width="350" heigth="450" >
 </p>
 
-
- Tela Desktop
 
 <p align="center">
 <img src="/src/img/prototipo login desktop.PNG" width="350" heigth="350" >
@@ -84,16 +105,9 @@ A partir do resultado da pesquisa criamos o protótipo da aplicação
 
 
 
+## 6. Conceito Final
 
-## 5. Histórias do Usuário
-
-
-
-
-
-
-
-## 5. Critérios de aceitação mínimos do projeto
+* Mobile
 
 <p align="center">
 <img src="/src/img/login mobile.jpeg" width="350" heigth="350" >
@@ -110,6 +124,8 @@ A partir do resultado da pesquisa criamos o protótipo da aplicação
  <p align="center">
 <img src="/src/img/feed mobile2.jpeg" width="350" heigth="350" >
 </p> 
+
+* Desktop
 
  <p align="center">
 <img src="/src/img/login desktop.jpeg" width="350" heigth="350" >
