@@ -2,12 +2,13 @@
 import { Home } from './pages/home/index.js';
 import { Login } from './pages/login/index.js';
 import { Cadastro } from './pages/cadastro/index.js';
-// import { onNavigate } from './utils/history.js';
+import { ValidacaoIdade } from './pages/confirmacao/index.js';
 
 const routes = {
   '/home': Home,
-  '/': Login,
+  '/login': Login,
   '/cadastro': Cadastro,
+  '/' : ValidacaoIdade,
 };
 
 const container = document.querySelector('#root');

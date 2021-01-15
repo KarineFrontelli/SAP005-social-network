@@ -51,8 +51,6 @@ export const nomeUsuario = () => firebase.auth().onAuthStateChanged((user) => {
     const nome = user.displayName;
     const primeiroNome = nome.split(' ')[0];
     document.querySelector('#userName').innerHTML = `<img class="photo-profile" src="${user.photoURL}"> Olá, ${primeiroNome} `;
-
-
   } else {
     logout();
   }
