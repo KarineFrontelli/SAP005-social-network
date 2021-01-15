@@ -1,4 +1,4 @@
-
+Para acessar a página [clique aqui](https://rede-social-51f01.web.app/).. 💻
 
 <p align="center">
 <img src="/src/img/Logo.jpeg" width="300" heigth="300" >
@@ -8,86 +8,33 @@
 
 - [1. Introdução](#1-Introdução)
 - [2. Apresentação](#2-apresentação)
-- [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
+- [3. Planejamento e Desenvolvimento](#3-Planejamento-e-Desenvolvimento)
 - [4. Considerações gerais](#4-considerações-gerais)
 - [5. Critérios de aceitação mínimos do
   projeto](#5-critérios-de-aceitação-mínimos-do-projeto)
-- [6. Hacker edition](#6-hacker-edition)
-- [7. Entrega](#7-entrega)
-- [8. Guias, dicas e leituras
-  complementares](#8-guias-dicas-e-leituras-complementares)
-
----
 
 ## 1. Introdução
 
-Não é segredo pra ninguém que as Redes Sociais tem um lugarzinho só delas em nossos corações, umas mais outras menos mas a questão é que hoje em dia ninguém vive sem dar uma espiadinha nas redes, seja para postar foto de uma viagem, o Meme do momento ou como meio de manter-se atualizado em um ou diversos assuntos ao mesmo tempo. De acordo com a revista época [o Brasil ocupa o 2º lugar dos países que passam mais tempo conectados em redes sociais](https://epocanegocios.globo.com/Tecnologia/noticia/2019/09/brasil-e-2-em-ranking-de-paises-que-passam-mais-tempo-em-redes-sociais.html).  
-
-Por este motivo a Laboratória nos propos o desenvolvimento de uma Rede Social abordando um tema que fosse relevante para nosso estilo de vida. Foi ai que nasceu LaBeer.
+  Não é segredo pra ninguém que as Redes Sociais tem um lugarzinho só delas em nossos corações, umas mais outras menos mas a questão é que hoje em dia ninguém vive sem dar uma espiadinha nas redes, seja para postar foto de uma viagem, o Meme do momento ou como meio de manter-se atualizado em um ou diversos assuntos ao mesmo tempo. De acordo com a revista época [o Brasil ocupa o 2º lugar dos países que passam mais tempo conectados em redes sociais](https://epocanegocios.globo.com/Tecnologia/noticia/2019/09/brasil-e-2-em-ranking-de-paises-que-passam-mais-tempo-em-redes-sociais.html).  
+  Por este motivo a Laboratória nos propos o desenvolvimento de uma Rede Social abordando um tema que fosse relevante para nosso estilo de vida. Foi ai que nasceu LaBeer.
 
 
 ## 2. Apresentação
 
-LaBeer é um Rede Social voltada para o entretenimento e troca de experiencias entre apreciadores de cerveja. Através da aplicação é possível deixar sua opinião sobre marcas, sabores, preços e uma ótima oportunidade para ampliar seu círculo social conhecendo novas pessoas com interesses parecidos com o seu.
+  LaBeer é um Rede Social voltada para o entretenimento e troca de experiencias entre apreciadores de cerveja. Através da aplicação é possível deixar sua opinião sobre marcas, sabores, preços e uma ótima oportunidade para ampliar seu círculo social conhecendo novas pessoas com interesses parecidos com o seu.
 
 
-## 3. Objetivos de aprendizagem
+## 3. Planejamento e Desenvolvimento
 
-O objetivo principal de aprendizagem deste projeto é construir uma [Single-page
-Application
-(SPA)](https://pt.wikipedia.org/wiki/Aplicativo_de_p%C3%A1gina_%C3%BAnica)
-[_responsiva_](https://github.com/Laboratoria/curricula-js/tree/master/topics/css/02-responsive)
-(com mais de uma tela/ página) na qual seja possível **ler e escrever dados.**
-
-### HTML e CSS
-
-- [ ] [HTML
-      semântico](https://developer.mozilla.org/pt-BR/docs/Glossario/Semantica)
-- [ ] [CSS `flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-- [ ] Construir sua aplicação respeitando o protótipo.
-
-### DOM e Web APIs
-
-- [ ] [Manipulação do
-      DOM](https://developer.mozilla.org/pt-BR/docs/DOM/Referencia_do_DOM/Introdu%C3%A7%C3%A3o)
-- [ ] [History
-      API](https://developer.mozilla.org/pt-BR/docs/Web/API/History_API)
-
-### Javascript
-
-- [ ] [Uso de
-      callbacks](https://developer.mozilla.org/pt-BR/docs/Glossario/Callback_function)
-- [ ] [Consumo de
-      Promises](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
-- [ ] Uso de ES modules
-      ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-      |
-      [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
-
-### Firebase
-
-- [ ] [Firestore](https://firebase.google.com/docs/firestore)
-- [ ] [Firebase Auth](https://firebase.google.com/docs/auth/web/start)
-- [ ] [Firebase security rules](https://firebase.google.com/docs/rules)
-
-### Testing
-
-- [ ] [Teste unitários](https://jestjs.io/docs/pt-BR/getting-started)
-- [ ] [Testes assíncronos](https://jestjs.io/docs/pt-BR/asynchronous)
-- [ ] [Mocking](https://jestjs.io/docs/pt-BR/manual-mocks)
-
-### Git e Github
-
-- [ ] [Colaboração pelo Github](https://docs.github.com/pt/free-pro-team@latest/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository)
-- [ ] Organização pelo [Github Projects](https://docs.github.com/pt/free-pro-team@latest/github/managing-your-work-on-github/about-project-boards)
-
-### Boas práticas de programação
-
-- [ ] Modularização
-- [ ] Nomenclatura / Semântica
-- [ ] Linting
-
----
+  Iniciamos o processo de desenvolvimento fazendo uma pesquisa com usuários, onde detectamos as principais necessidades de funcionalidades do produto.A partir deste ponto criamos as histórias do usuário, dividindo e planejando nossas seguintes ações.
+  
+  
+  
+  
+  
+  
+  Criamos então o protótipo de baixa fidelidade da aplicação, para que pudéssemos, através dela, testar com usuários reais e receber o feedback.
+Depois de receber o feedback e avaliar todos os pontos nós corrigimos o que precisava e finalizamos o layout final da história
 
 ## 4. Considerações gerais
 
