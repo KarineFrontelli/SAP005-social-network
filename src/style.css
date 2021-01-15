@@ -562,5 +562,49 @@ footer a {
   footer {
     font-size: 1.4em;
   }
+}
+
+@media (min-width:2000px)  {
+  .idade,
+  .aviso {
+    font-size: 2.5em;
+  }
   
+  .botoes {
+    width: 65%;
+  }
+  
+  .btn-maior-de-idade,
+  .btn-menor-de-idade {
+    width: 10vw;
+  }
+  
+  .confirmacao,
+  .login,
+  .cadastro {
+    max-width: 1500px;
+  }
+
+  .input-login {
+    width: 20vw; 
+  } 
+
+  .outros-logins{
+    width: 20vw;
+  }
+
+  .btn-Login,
+  .criar-Conta,
+  .btn-Facebook, 
+  .btn-Google {
+    width: 8vw;
+  } 
+
+  .criar-Cadastro {
+    font-size: 1em;
+  }
+
+  footer {
+    font-size: 2em;
+  }
 }
