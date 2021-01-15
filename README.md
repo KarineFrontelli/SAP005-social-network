@@ -6,8 +6,8 @@
 
 ## Índice
 
-- [1. Introdução](#1-apresentação)
-- [2. Apresentação](#2-resumo-do-projeto)
+- [1. Introdução](#1-Introdução)
+- [2. Apresentação](#2-apresentação)
 - [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
 - [4. Considerações gerais](#4-considerações-gerais)
 - [5. Critérios de aceitação mínimos do
