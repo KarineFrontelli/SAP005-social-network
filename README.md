@@ -6,9 +6,9 @@ Para acessar a página [clique aqui](https://rede-social-51f01.web.app/).. 💻
 
 ## Índice
 
-- [1. Introdução](#1-Introdução)
+- [1. Introdução](#1-introdução)
 - [2. Apresentação](#2-apresentação)
-- [3. Planejamento e Desenvolvimento](#3-Planejamento-e-Desenvolvimento)
+- [3. Planejamento e Desenvolvimento](#3-planejamento-e-desenvolvimento)
 - [4. Considerações gerais](#4-considerações-gerais)
 - [5. Critérios de aceitação mínimos do
   projeto](#5-critérios-de-aceitação-mínimos-do-projeto)
@@ -26,41 +26,72 @@ Para acessar a página [clique aqui](https://rede-social-51f01.web.app/).. 💻
 
 ## 3. Planejamento e Desenvolvimento
 
-  Iniciamos o processo de desenvolvimento fazendo uma pesquisa com usuários, onde detectamos as principais necessidades de funcionalidades do produto.A partir deste ponto criamos as histórias do usuário, dividindo e planejando nossas seguintes ações.
+  Iniciamos o processo de desenvolvimento fazendo uma pesquisa com possíveis usuários, onde detectamos as principais necessidades de funcionalidades do produto.A pesquisa obteve 98 respostas dentre os resultados obtivemos os seguintes dados:
+  
+ ✔️ 88,5% dos participantes utilizariam uma rede social voltada para o público cervejeiro
+ 
+ <p align="center">
+<img src="/src/img/vc acessaria a Rede.jpeg" width="350" heigth="350" >
+</p>
+ 
+ 
+✔️ 100% dos participantes contumam acessar as redes sociais pelo celular e desses 100% 32,5% também utilizam desktop  
+ <p align="center">
+<img src="/src/img/como acessa.jpeg" width="400" heigth="400" >
+</p>
+
+
+ ✔️  32,5% Criariam um novo usuário cadastrando e-mail e senha;
+ ✔️  61% dos participates costumam fazer login com goole;
+ ✔️ 58,4% utilizam login com o facebook
+  <p align="center">
+<img src="/src/img/login.jpeg" width="350" heigth="350" >
+</p> 
+ 
+
   
   
   
   
   
   
-  Criamos então o protótipo de baixa fidelidade da aplicação, para que pudéssemos, através dela, testar com usuários reais e receber o feedback.
-Depois de receber o feedback e avaliar todos os pontos nós corrigimos o que precisava e finalizamos o layout final da história
+  
 
-## 4. Considerações gerais
+## 4. Protótipo
 
-- Este projeto deve ser desenvolvido em trios.
+A partir do resultado da pesquisa criamos o protótipo da aplicação
 
-- A lógica do projeto deve estar implementada completamente em JavaScript
-  (ES6+), HTML e CSS :smiley:. Para este projeto **não está permitido** o uso de
-  _frameworks_ ou bibliotecas de CSS e JS.
+## Tela mobile
 
-- A divisão e organização do trabalho deve permitir, sem exceção, que **cada
-  integrante** da equipe pratique a aprendizagem de tudo que está envolvido em
-  **cada história**. _Não dividam o trabalho como em uma fábrica._
+<p align="center">
+<img src="/src/img/login mobile.jpeg" width="350" heigth="350" >
+</p> 
 
-- Está avançando em seus projetos com alguma fluidez e sem grandes problemas?
-  Seja generosa com suas parceiras, deixe-as aprender e praticar sem restrições,
-  mesmo que demore um pouco mais. Aproveite para _mentorá-las_, para fazer _pair
-  programming_. Uma das melhores formas de aprender é explicar verbalmente.
+<p align="center">
+<img src="/src/img/cadastro mobile.jpeg" width="350" heigth="350" >
+</p> 
 
-- Está sentindo dificuldade e para você é mais difícil de avançar? Não fique com
-  as partes "fáceis" do projeto. Converse, negocie, busque sua oportunidade de
-  praticar e aprender o que é mais difícil para você.
+ <p align="center">
+<img src="/src/img/Feed mobile.jpeg" width="350" heigth="350" >
+</p> 
 
-- Vocês apenas poderão trabalhar em uma história por vez. Não avancem para a
-  próxima sem completar a anterior. As histórias apenas são concluídas quando se
-  completam **todos** os critérios de aceitação + **toda** sua definição de
-  pronto.
+ <p align="center">
+<img src="/src/img/feed mobile2.jpeg" width="350" heigth="350" >
+</p> 
+
+ <p align="center">
+<img src="/src/img/feed mobile2.jpeg" width="350" heigth="350" >
+</p> 
+
+
+
+
+
+
+
+
+
+
 
 ## 5. Critérios de aceitação mínimos do projeto
 
