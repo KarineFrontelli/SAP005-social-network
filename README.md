@@ -1,9 +1,13 @@
-# Criando uma Rede Social
+
+
+<p align="center">
+<img src="/src/img/Logo.jpeg" width="300" heigth="300" >
+</p>
 
 ## Índice
 
-- [1. Prefácio](#1-prefácio)
-- [2. Resumo do projeto](#2-resumo-do-projeto)
+- [1. Introdução](#1-apresentação)
+- [2. Apresentação](#2-resumo-do-projeto)
 - [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
 - [4. Considerações gerais](#4-considerações-gerais)
 - [5. Critérios de aceitação mínimos do
@@ -15,29 +19,17 @@
 
 ---
 
-## 1. Prefácio
+## 1. Introdução
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. As redes sociais
-invadiram nossas vidas. Nós as amamos ou odiamos, e muitas pessoas não conseguem
-viver sem elas.
+Não é segredo pra ninguém que as Redes Sociais tem um lugarzinho só delas em nossos corações, umas mais outras menos mas a questão é que hoje em dia ninguém vive sem dar uma espiadinha nas redes, seja para postar foto de uma viagem, o Meme do momento ou como meio de manter-se atualizado em um ou diversos assuntos ao mesmo tempo. De acordo com a revista época [o Brasil ocupa o 2º lugar dos países que passam mais tempo conectados em redes sociais](https://epocanegocios.globo.com/Tecnologia/noticia/2019/09/brasil-e-2-em-ranking-de-paises-que-passam-mais-tempo-em-redes-sociais.html).  
 
-Há redes sociais de todo tipo para todos os tipos de interesse. Por exemplo: em
-uma rodada de financiamento com investidores, foi apresentada uma rede social
-para químicos onde os usuários podem publicar artigos a respeito de suas
-pesquisas, comentar os artigos de seus colegas e filtrar artigos de acordo com
-determinadas tags ou popularidade, mais recente ou mais comentado.
+Por este motivo a Laboratória nos propos o desenvolvimento de uma Rede Social abordando um tema que fosse relevante para nosso estilo de vida. Foi ai que nasceu LaBeer.
 
-## 2. Resumo do projeto
 
-Neste projeto você construirá uma Rede Social sobre o que você e sua equipe
-decidirem. Pode ser, por exemplo, sobre alimentação saudável, feminismo,
-educação, saúde, energias renováveis, amantes das
-[Empanadas](https://pt.wikipedia.org/wiki/Empanada), de
-[Tacos](<https://pt.wikipedia.org/wiki/Taco_(culin%C3%A1ria)>), de
-[Feijoada](https://pt.wikipedia.org/wiki/Feijoada), ou do que seja.
+## 2. Apresentação
 
-Sua Rede Social terá que permitir à qualquer usuário criar uma conta de acesso,
-logar-se com ela, criar, editar, deletar e dar _likes_ em publicações.
+LaBeer é um Rede Social voltada para o entretenimento e troca de experiencias entre apreciadores de cerveja. Através da aplicação é possível deixar sua opinião sobre marcas, sabores, preços e uma ótima oportunidade para ampliar seu círculo social conhecendo novas pessoas com interesses parecidos com o seu.
+
 
 ## 3. Objetivos de aprendizagem
 
