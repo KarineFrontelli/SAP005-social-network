@@ -9,9 +9,11 @@ Para acessar a página [clique aqui](https://rede-social-51f01.web.app/).. 💻
 - [1. Introdução](#1-introdução)
 - [2. Apresentação](#2-apresentação)
 - [3. Planejamento e Desenvolvimento](#3-planejamento-e-desenvolvimento)
-- [4. Considerações gerais](#4-considerações-gerais)
-- [5. Critérios de aceitação mínimos do
-  projeto](#5-critérios-de-aceitação-mínimos-do-projeto)
+- [4. Usuários](#4-usuarios)
+- [5. Protótipo](#5-prototipo)
+- [6. Conceito Final](#6-conceito-final)
+- [7. Estrutura](#7-estrutura)
+- [8. Autoria](#8-autoria)
 
 ## 1. Introdução
 
@@ -85,11 +87,13 @@ Catia precisa editar e excluir os próprios posts porque quer aproveitar a apose
 
 A partir do resultado da pesquisa criamos o protótipo da aplicação
 
+* Mobile
 
 <p align="center">
-<img src="/src/img/prototipo-mobile.jpeg" width="350" heigth="450" >
+<img src="/src/img/prototipo-mobile.jpeg" width="350" heigth="500" >
 </p>
 
+* Desktop
 
 <p align="center">
 <img src="/src/img/prototipo login desktop.PNG" width="350" heigth="350" >
@@ -110,19 +114,19 @@ A partir do resultado da pesquisa criamos o protótipo da aplicação
 * Mobile
 
 <p align="center">
-<img src="/src/img/login mobile.jpeg" width="350" heigth="350" >
+<img src="/src/img/login mobile.jpeg" width="250"  >
 </p> 
 
 <p align="center">
-<img src="/src/img/cadastro mobile.jpeg" width="350" heigth="350" >
+<img src="/src/img/cadastro mobile.jpeg" width="250" >
 </p> 
 
  <p align="center">
-<img src="/src/img/Feed mobile.jpeg" width="350" heigth="350" >
+<img src="/src/img/Feed mobile.jpeg" width="250" >
 </p> 
 
  <p align="center">
-<img src="/src/img/feed mobile2.jpeg" width="350" heigth="350" >
+<img src="/src/img/feed mobile2.jpeg" width="250"  >
 </p> 
 
 * Desktop
@@ -138,4 +142,20 @@ A partir do resultado da pesquisa criamos o protótipo da aplicação
  <p align="center">
 <img src="/src/img/Feed desktop.jpeg" width="350" heigth="350" >
 </p> 
+
+
+## 7.Estrutura 
+
+A aplicação 4 telas sendo elas:
+
+* Confirmação Etária 
+* Login
+* Cadastro
+* Feed de postagens
+
+## 8.Autoria 
+
+Este projeto foi desenvolvido por : [Ana Beatriz](https://github.com/biacostadev) ,[Juliana](https://github.com/julianaads) e [karine](https://github.com/KarineFrontelli)
+
+
 
