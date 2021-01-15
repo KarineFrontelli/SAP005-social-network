@@ -71,15 +71,15 @@ A partir do resultado da pesquisa criamos o protótipo da aplicação
 # Tela Desktop
 
 <p align="center">
-<img src="/src/img/prototipo login desktop.png" width="350" heigth="350" >
+<img src="/src/img/prototipo login desktop.PNG" width="350" heigth="350" >
 </p>
 
 <p align="center">
-<img src="/src/img/prototipo cadastro desktop.png" width="350" heigth="350" >
+<img src="/src/img/prototipo cadastro desktop.PNG" width="350" heigth="350" >
 </p>
 
 <p align="center">
-<img src="/src/img/prototipo feed desktop.png" width="350" heigth="350" >
+<img src="/src/img/prototipo feed desktop.PNG" width="350" heigth="350" >
 </p>
 
 
