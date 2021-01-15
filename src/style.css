@@ -8,10 +8,65 @@ body {
   background-color: #1c1c1c;
 }
 
+.confirmacao {
+  color: #FAE62E;
+}
+
+.confirmacao__opcoes {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.botoes {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-maior-de-idade,
+.btn-menor-de-idade {
+  width: 35vw;
+  height: 2.6em;
+  background-color: #FBF395;
+  margin-top: 0.6em;
+  border-radius: 7px;
+  border: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-maior-de-idade:hover,
+.btn-maior-de-idade:active{
+  position:relative;
+  top: 5px;
+  box-shadow: none;
+  background-color: #005105;
+  color: white;
+}
+
+.btn-menor-de-idade:hover,
+.btn-menor-de-idade:active {
+  position:relative;
+  top: 5px;
+  box-shadow: none;
+  background-color: #F05628;
+  color: white;
+}
+
+.aviso {
+  margin-top: -3em;
+  visibility: hidden;
+  text-align: center;
+}
+
+.confirmacao,
 .login,
 .cadastro {
   height:100vh;
-  /* background-color: #1c1c1c; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -344,6 +399,35 @@ footer a {
      width: 60vh;
   }
 
+  .idade,
+  .aviso {
+    font-size: 2em;
+  }
+
+  .confirmacao__opcoes {
+    width: 35vw; 
+    margin-left: 40%;
+  }
+  
+  .botoes {
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .btn-maior-de-idade,
+  .btn-menor-de-idade {
+    width: 10vw;;
+  }
+  
+  .aviso {
+    width: 80%;
+    margin-top: -3em;
+    visibility: hidden;
+    text-align: center;
+  }
+  
+  .confirmacao,
   .login,
   .cadastro {
     max-width: 1000px;
